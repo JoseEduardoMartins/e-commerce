@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :cart="shoppingCart" :visibility="false" :existKebab="existKebab"/>
+        <Header :cart="shoppingCart" :existKebab="existKebab"/>
         <form>
             <div class="form_menu first">
                 <div class="title_menu">Kebab</div>

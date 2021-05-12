@@ -38,7 +38,7 @@
 export default {
   data () {
     return {
-      visibilidade: this.visibility,
+      visibilidade: false,
       kebabs: this.cart.arrayKebab
     }
   },
