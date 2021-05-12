@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :cart="shoppingCart" :amount="amount" :visibility="false" :existKebab="existKebab"/>
+        <Header :cart="shoppingCart" :visibility="false" :existKebab="existKebab"/>
         <form>
             <div class="form_menu first">
                 <div class="title_menu">Kebab</div>
@@ -72,9 +72,9 @@ export default {
       total: 0,
       shoppingCart: {
         arrayKebab: [],
-        total: 0
+        total: 0,
+        amount: 0
       },
-      amount: 0,
       existKebab: false,
       msgError: false
     }
@@ -106,18 +106,21 @@ export default {
         this.calcTotal()
         this.shoppingCart.arrayKebab.push({id: Date.now(), carne: this.carneField, saladas: this.saladasField, adicionais: this.adicionaisField, brinde: this.brindeField, quantidade: this.quantidadeField, total: this.total})
         this.shoppingCart.total += this.total
-        this.carneField = ''
-        this.saladasField = []
-        this.adicionaisField = []
-        this.brindeField = ''
-        this.quantidadeField = 1
-        this.total = 0
-        this.amount += 1
+        this.resetFiends()
+        this.shoppingCart.amount += 1
         if (this.existKebab === false) {
           this.existKebab = true
         }
         this.msgError = false
       }
+    },
+    resetFiends: function () {
+      this.carneField = ''
+      this.saladasField = []
+      this.adicionaisField = []
+      this.brindeField = ''
+      this.quantidadeField = 1
+      this.total = 0
     }
   }
 }

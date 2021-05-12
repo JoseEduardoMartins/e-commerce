@@ -3,7 +3,7 @@
         <div class="header">
             <img class="logo" src="../assets/logoVermelha.png"/>
             <div @mouseover="showCart" @mouseout="hideCart" class="item_cart">
-                <i class='fas fa-shopping-cart icon'><span>{{amount}}</span></i>
+                <i class='fas fa-shopping-cart icon'><span>{{this.cart.amount}}</span></i>
             </div>
         </div>
         <div id="cart" class="shoppingCart" v-if="visibilidade">
@@ -44,7 +44,6 @@ export default {
   },
   props: {
     cart: Object,
-    amount: Number,
     visibility: Boolean,
     existKebab: Boolean
   },
