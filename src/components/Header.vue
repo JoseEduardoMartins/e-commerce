@@ -44,7 +44,6 @@ export default {
   },
   props: {
     cart: Object,
-    visibility: Boolean,
     existKebab: Boolean
   },
   methods: {
