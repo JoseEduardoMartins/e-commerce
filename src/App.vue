@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header :cart='shoppingCart' :existKebab='existKebab'/>
     <main>
       <router-view/>
     </main>
@@ -8,10 +9,20 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 export default {
   name: 'App',
+  data () {
+    return {
+      shoppingCart: {
+        amount: 0
+      },
+      existKebab: false
+    }
+  },
   components: {
+    Header,
     Footer
   }
 }

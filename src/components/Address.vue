@@ -1,5 +1,5 @@
 <template>
-    <div @mouseover="emitAddress(this.arrayAddress)" class="form_menu third">
+    <div class="form_menu third">
         <div class="title_menu">Endereço</div>
 
         <div class="item_address">
@@ -69,13 +69,17 @@ export default {
 }
 .item_address{
     margin: 30px 0;
-    display: flex;
-    justify-content: space-around;
+    display: column;
 }
 .address{
     background-color: #fedf84;
     border: 1px solid #600107;
     font-size: 14px;
 }
-
+@media (min-width: 800px){
+  .item_address{
+    display: flex;
+    justify-content: space-around;
+}
+}
 </style>
