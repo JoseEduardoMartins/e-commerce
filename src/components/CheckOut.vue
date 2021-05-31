@@ -2,19 +2,33 @@
     <div class="form_menu third last">
         <div class="title_menu">Finalizar Pedido</div>
         <label>Forma de pagamento:</label>
-        <select class="uf" name="estado">
-        <option value="dinhiro">Dinheiro</option>
-        <option value="cartao">Cartão</option>
-        <option value="pix">Pix</option>
+        <select class="uf" v-model="pay">
+        <option>Dinheiro</option>
+        <option>Cartão</option>
+        <option>Pix</option>
         </select>
         <br>
-        <button id="enviar">Enviar Pedido</button><br><br>
+        <button id="enviar" @click="orderSubmit">Enviar Pedido</button><br><br>
     </div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      pay: '',
+      shoppingCart: this.cart
+    }
+  },
+  props: {
+    cart: Object,
+    arrauAddress: Array
+  },
+  methods: {
+    orderSubmit () {
+      window.location.href = 'https://api.whatsapp.com/send?phone=5548996360340'
+    }
+  }
 }
 </script>
 

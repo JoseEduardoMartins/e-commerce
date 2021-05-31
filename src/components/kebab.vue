@@ -67,8 +67,8 @@ export default {
     }
   },
   methods: {
-    emitClick: function (data) {
-      this.$emit('emitClick', data)
+    emitKebab: function (data) {
+      this.$emit('emitKebab', data)
     },
     calcTotal: function () {
       (this.meatField === 'bovina') ? this.total += 21 : this.total += 0;
@@ -110,7 +110,7 @@ export default {
         this.dataKebab()
         this.resetFiends()
         this.msgError = false
-        this.emitClick(this.kebab)
+        this.emitKebab(this.kebab)
       }
     }
   }

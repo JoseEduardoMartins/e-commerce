@@ -5,52 +5,52 @@
             <div class="item_list second itens">
                 <div>
                     <li class="title_list">Água:</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="water[2]" @click="emitDrinks"> Com gás R$3,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="gasWater[2]"> Sem gás R$3,00</dd>
+                    <dd><input @click="emitDrink(water)" type="number" class="quantidade bebidas" value="0" min="0" v-model="water[2]"> Com gás R$3,00</dd>
+                    <dd><input @click="emitDrink(gasWater)" type="number" class="quantidade bebidas" value="0" min="0" v-model="gasWater[2]"> Sem gás R$3,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Refrigerante lata</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinCoca[2]"> Coca-Cola R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinCocaZero[2]"> Coca-Cola Zero R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinGuarana[2]"> Guaraná R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSprite[2]"> Sprite R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSchweppes[2]"> Schweppes Citrus R$5,00</dd>
+                    <dd><input @click="emitDrink(tinCoca)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinCoca[2]"> Coca-Cola R$5,00</dd>
+                    <dd><input @click="emitDrink(tinCocaZero)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinCocaZero[2]"> Coca-Cola Zero R$5,00</dd>
+                    <dd><input @click="emitDrink(tinGuarana)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinGuarana[2]"> Guaraná R$5,00</dd>
+                    <dd><input @click="emitDrink(tinSprite)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSprite[2]"> Sprite R$5,00</dd>
+                    <dd><input @click="emitDrink(tinSchweppes)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSchweppes[2]"> Schweppes Citrus R$5,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Refrigerante 1 litro</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="literPureza[2]"> Pureza R$8,00</dd>
+                    <dd><input @click="emitDrink(literPureza)" type="number" class="quantidade bebidas" value="0" min="0" v-model="literPureza[2]"> Pureza R$8,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Refrigerante 1,5 litros</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="literQuiteCoca[2]"> Coca-Cola R$8,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="literQuiteGuarana[2]"> Guaraná R$8,00</dd>
+                    <dd><input @click="emitDrink(literQuiteCoca)" type="number" class="quantidade bebidas" value="0" min="0" v-model="literQuiteCoca[2]"> Coca-Cola R$8,00</dd>
+                    <dd><input @click="emitDrink(literQuiteGuarana)" type="number" class="quantidade bebidas" value="0" min="0" v-model="literQuiteGuarana[2]"> Guaraná R$8,00</dd>
                 </div>
             </div>
             <div class="item_list second itens">
                 <div>
                     <li class="title_list">Suco 290ml</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="juiceMaracuja[2]"> Del valle Maracujá R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="juicePessego[2]"> Del valle Pêssego R$5,00</dd>
+                    <dd><input @click="emitDrink(juiceMaracuja)" type="number" class="quantidade bebidas" value="0" min="0" v-model="juiceMaracuja[2]"> Del valle Maracujá R$5,00</dd>
+                    <dd><input @click="emitDrink(juicePessego)" type="number" class="quantidade bebidas" value="0" min="0" v-model="juicePessego[2]"> Del valle Pêssego R$5,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Chá 450ml</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="teaLemon[2]"> Matte Leão limão R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="teaOriginal[2]"> Matte Leão original R$5,00</dd>
+                    <dd><input @click="emitDrink(teaLemon)" type="number" class="quantidade bebidas" value="0" min="0" v-model="teaLemon[2]"> Matte Leão limão R$5,00</dd>
+                    <dd><input @click="emitDrink(teaOriginal)" type="number" class="quantidade bebidas" value="0" min="0" v-model="teaOriginal[2]"> Matte Leão original R$5,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Cerveja Long neck</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="longHeineken[2]"> Heineken R$8,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="longBudweiser[2]"> Budweiser R$8,00</dd>
+                    <dd><input @click="emitDrink(longHeineken)" type="number" class="quantidade bebidas" value="0" min="0" v-model="longHeineken[2]"> Heineken R$8,00</dd>
+                    <dd><input @click="emitDrink(longBudweiser)" type="number" class="quantidade bebidas" value="0" min="0" v-model="longBudweiser[2]"> Budweiser R$8,00</dd>
                 </div>
                 <div>
                     <li class="title_list">Cerveja lata</li>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBrahma[2]"> Brahma R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSkolPilsen[2]"> Skol Pilsen R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSkolPuroMalte[2]"> Skol Puro Malte R$5,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinHeineken[2]"> Heineken R$8,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBudweiser[2]"> Budweiser R$8,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBelaVista[2]"> Bela Vista R$8,00</dd>
-                    <dd><input type="number" class="quantidade bebidas" value="0" min="0" v-model="tinDadoBier[2]"> Dado Bier R$6,00</dd>
+                    <dd><input @click="emitDrink(tinBrahma)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBrahma[2]"> Brahma R$5,00</dd>
+                    <dd><input @click="emitDrink(tinSkolPilsen)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSkolPilsen[2]"> Skol Pilsen R$5,00</dd>
+                    <dd><input @click="emitDrink(tinSkolPuroMalte)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinSkolPuroMalte[2]"> Skol Puro Malte R$5,00</dd>
+                    <dd><input @click="emitDrink(tinHeineken)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinHeineken[2]"> Heineken R$8,00</dd>
+                    <dd><input @click="emitDrink(tinBudweiser)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBudweiser[2]"> Budweiser R$8,00</dd>
+                    <dd><input @click="emitDrink(tinBelaVista)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinBelaVista[2]"> Bela Vista R$8,00</dd>
+                    <dd><input @click="emitDrink(tinDadoBier)" type="number" class="quantidade bebidas" value="0" min="0" v-model="tinDadoBier[2]"> Dado Bier R$6,00</dd>
                 </div>
             </div>
         </ul>
@@ -83,37 +83,12 @@ export default {
       tinHeineken: ['Heineken lata', 8, 0],
       tinBudweiser: ['Budweiser lata', 8, 0],
       tinBelaVista: ['Bela Vista lata', 8, 0],
-      tinDadoBier: ['Dado Bier lata', 6, 0],
-      drinks: [],
-      verification: true
+      tinDadoBier: ['Dado Bier lata', 6, 0]
     }
   },
   methods: {
-    emitDrinks () {
-      (this.water[2] > 0) ? this.drinks.push(this.water) : this.verification = false;
-      (this.gasWater[2] > 0) ? this.drinks.push(this.gasWater) : this.verification = false;
-      (this.tinCoca[2] > 0) ? this.drinks.push(this.tinCoca) : this.verification = false;
-      (this.tinCocaZero[2] > 0) ? this.drinks.push(this.tinCocaZero) : this.verification = false;
-      (this.tinGuarana[2] > 0) ? this.drinks.push(this.tinGuarana) : this.verification = false;
-      (this.tinSprite[2] > 0) ? this.drinks.push(this.tinSprite) : this.verification = false;
-      (this.tinSchweppes[2] > 0) ? this.drinks.push(this.tinSchweppes) : this.verification = false;
-      (this.literPureza[2] > 0) ? this.drinks.push(this.literPureza) : this.verification = false;
-      (this.literQuiteCoca[2] > 0) ? this.drinks.push(this.literQuiteCoca) : this.verification = false;
-      (this.literQuiteGuarana[2] > 0) ? this.drinks.push(this.literQuiteGuarana) : this.verification = false;
-      (this.juiceMaracuja[2] > 0) ? this.drinks.push(this.juiceMaracuja) : this.verification = false;
-      (this.juicePessego[2] > 0) ? this.drinks.push(this.juicePessego) : this.verification = false;
-      (this.teaLemon[2] > 0) ? this.drinks.push(this.teaLemon) : this.verification = false;
-      (this.teaOriginal[2] > 0) ? this.drinks.push(this.teaOriginal) : this.verification = false;
-      (this.longHeineken[2] > 0) ? this.drinks.push(this.longHeineken) : this.verification = false;
-      (this.longBudweiser[2] > 0) ? this.drinks.push(this.longBudweiser) : this.verification = false;
-      (this.tinBrahma[2] > 0) ? this.drinks.push(this.tinBrahma) : this.verification = false;
-      (this.tinSkolPilsen[2] > 0) ? this.drinks.push(this.tinSkolPilsen) : this.verification = false;
-      (this.tinSkolPuroMalte[2] > 0) ? this.drinks.push(this.tinSkolPuroMalte) : this.verification = false;
-      (this.tinHeineken[2] > 0) ? this.drinks.push(this.tinHeineken) : this.verification = false;
-      (this.tinBudweiser[2] > 0) ? this.drinks.push(this.tinBudweiser) : this.verification = false;
-      (this.tinBelaVista[2] > 0) ? this.drinks.push(this.tinBelaVista) : this.verification = false;
-      (this.tinDadoBier[2] > 0) ? this.drinks.push(this.tinDadoBier) : this.verification = false
-      this.$emit('emitDrinks', this.drinks)
+    emitDrink (data) {
+      this.$emit('emitDrink', data)
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
     <form>
-        <Kebab @emitClick="getKebab"/>
-        <Drinks/>
-        <Address/>
-        <CheckOut/>
+        <Kebab @emitKebab="getKebab"/>
+        <Drinks @emitDrink="getDrink"/>
+        <Address @emitAddress="getAddress"/>
+        <CheckOut :cart='shoppingCart' :arrauAddress='arrayAddress'/>
     </form>
 </template>
 
@@ -27,6 +27,25 @@ export default {
   methods: {
     getKebab (data) {
       this.shoppingCart.arrayKebab.push(data)
+      console.log(this.shoppingCart.arrayKebab)
+    },
+    getDrink (data) {
+      if (this.shoppingCart.arrayDrinks.length > 0) {
+        if (this.getDrinkArray(data) !== true) {
+          this.shoppingCart.arrayDrinks.push(data)
+        }
+      } else {
+        this.shoppingCart.arrayDrinks.push(data)
+      }
+    },
+    getDrinkArray (data) {
+      for (let i = 0; i < this.shoppingCart.arrayDrinks.length; i++) {
+        if (this.shoppingCart.arrayDrinks[i][0] === data[0]) {
+          this.shoppingCart.arrayDrinks.splice(i, 1)
+          this.shoppingCart.arrayDrinks.push(data)
+          return true
+        }
+      }
     },
     getAddress (data) {
       if (this.arrayAddress.length === 0) {

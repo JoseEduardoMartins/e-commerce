@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import EventBus from './EventBus'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -12,4 +13,9 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+new Vue({
+  el: '#eventBus',
+  components: { EventBus },
+  template: '<EventBus/>'
 })

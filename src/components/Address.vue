@@ -1,5 +1,5 @@
 <template>
-    <div class="form_menu third">
+    <div @mouseover="emitAddress(this.arrayAddress)" class="form_menu third">
         <div class="title_menu">Endereço</div>
 
         <div class="item_address">
@@ -43,9 +43,11 @@ export default {
     }
   },
   methods: {
-    emitBlur (data) {
-      if (this.verification) {
-        this.$emit('emitBlur', data)
+    emitAddress (data) {
+      if (this.arrayAddress !== undefined) {
+        if (this.addAddres) {
+          this.$emit('emitBlur', data)
+        }
       }
     },
     addAddres () {
@@ -55,7 +57,7 @@ export default {
       (this.street !== '') ? this.arrayAddress.push(this.street) : this.verification = false;
       (this.number !== '') ? this.arrayAddress.push(this.number) : this.verification = false;
       (this.complement !== '') ? this.arrayAddress.push(this.complement) : this.verification = false
-      this.emitBlur(this.arrayAddress)
+      return this.verification
     }
   }
 }
