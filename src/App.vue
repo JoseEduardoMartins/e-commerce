@@ -1,15 +1,14 @@
 <template>
   <div id="app">
     <Header :cart='shoppingCart' :existKebab='existKebab'/>
-    <main>
-      <router-view/>
-    </main>
+    <Home/>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
+import Home from '@/components/Home.vue'
 import Footer from '@/components/Footer.vue'
 export default {
   name: 'App',
@@ -23,6 +22,7 @@ export default {
   },
   components: {
     Header,
+    Home,
     Footer
   }
 }
