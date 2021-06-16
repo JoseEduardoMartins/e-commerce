@@ -1,17 +1,11 @@
 <template>
     <form>
-        <Kebab @emitKebab="getKebab"/>
-        <Drinks @emitDrink="getDrink"/>
-        <Address @emitAddress="getAddress"/>
-        <CheckOut :cart='shoppingCart' :arrauAddress='arrayAddress'/>
+      <Information/>
     </form>
 </template>
 
 <script>
-import Kebab from '@/components/Kebab.vue'
-import Drinks from '@/components/Drinks.vue'
-import Address from '@/components/Address.vue'
-import CheckOut from '@/components/CheckOut.vue'
+import Information from '@/components/Information.vue'
 export default {
   data () {
     return {
@@ -25,10 +19,6 @@ export default {
     }
   },
   methods: {
-    getKebab (data) {
-      this.shoppingCart.arrayKebab.push(data)
-      console.log(this.shoppingCart.arrayKebab)
-    },
     getDrink (data) {
       if (this.shoppingCart.arrayDrinks.length > 0) {
         if (this.getDrinkArray(data) !== true) {
@@ -58,10 +48,7 @@ export default {
     }
   },
   components: {
-    Kebab,
-    Drinks,
-    Address,
-    CheckOut
+    Information
   }
 }
 </script>
@@ -110,11 +97,6 @@ export default {
     position: absolute;
     right: 30px;
     bottom: 20px;
-}
-.icon{
-    font-size: 40px;
-    color: #600107;
-    background-color: #fedf84;
 }
 input[type="text"]:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #fedf84 inset;
