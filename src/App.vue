@@ -32,6 +32,7 @@ export default {
     border: 0;
 }
 body {
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  background-color: gray;
 }
 </style>

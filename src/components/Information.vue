@@ -1,26 +1,24 @@
 <template>
   <div class="information">
     <div class="menu">
-        <div class="menu_item">
-            <div v-if="compareHour()" class="menu_item">
-                <i class="fas fa-circle icon green"></i>
-                <div class="menu_item text">Aberto</div>
-            </div>
-            <div v-if="!compareHour()" class="menu_item">
-                <i class="fas fa-circle icon red"></i>
-                <div class="menu_item text">Fechado</div>
-            </div>
+        <div v-if="compareHour()" class="menu_item">
+            <i class="fas fa-circle icon green"></i>
+            <div class="menu_item-text">Aberto</div>
+        </div>
+        <div v-if="!compareHour()" class="menu_item">
+            <i class="fas fa-circle icon red"></i>
+            <div class="menu_item-text">Fechado</div>
         </div>
         <div class="menu_item">
             <i class="far fa-clock icon gray"></i>
-            <div class="menu_item text">
+            <div class="menu_item-text">
                 <div>Tempo de entrega</div>
                 <div>30 - 40 minutos</div>
             </div>
         </div>
         <div class="menu_item">
             <i class="far fa-credit-card icon gray"></i>
-            <div class="menu_item text">forma de pagamento</div>
+            <div class="menu_item-text">forma de pagamento</div>
         </div>
     </div>
   </div>
@@ -65,15 +63,15 @@ export default {
     left: 0;
     right: 0;
     margin: auto;
-    width: calc(100% - 100px);
+    width: calc(100% - 20px);
     height: 50px;
     background-color: #222222;
-    border-radius: 20px;
+    border-radius: 10px;
 }
     .menu{
-        width: calc(100% - 100px);
+        width: calc(100% - 7px);
         margin: auto;
-        padding-top: 7px;
+        padding-top: 10px;
         display: flex;
         justify-content: space-between;
     }
@@ -82,23 +80,56 @@ export default {
             align-items: center;
         }
         .icon{
-            font-size: 35px;
+            font-size: 20px;
             margin-right: 10px;
         }
         .icon.green{
             color: green;
-            font-size: 20px;
+            font-size: 15px;
         }
         .icon.red{
             color: red;
-            font-size: 20px;
+            font-size: 15px;
         }
         .icon.gray{
             color: #C0C0C0;
         }
-        .menu_item.text{
+        .menu_item-text{
             color: white;
             display: inline;
-            font-size: 15px;
+            font-size: 10px;
         }
+@media (min-width: 500px) {
+.menu{
+  width: calc(100% - 50px);
+  padding-top: 7px;
+}
+  .icon{
+    font-size: 25px;
+    margin-right: 10px;
+  }
+  .menu_item-text{
+    font-size: 12px;
+  }
+}
+@media (min-width: 700px) {
+.information{
+    width: calc(100% - 100px);
+}
+  .menu{
+      width: calc(100% - 100px);
+  }
+    .icon{
+      font-size: 35px;
+    }
+    .icon.green{
+      font-size: 20px;
+    }
+    .icon.red{
+      font-size: 20px;
+    }
+    .menu_item-text{
+      font-size: 15px;
+    }
+}
 </style>

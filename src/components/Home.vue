@@ -1,11 +1,13 @@
 <template>
     <form>
       <Information/>
+      <Burgers/>
     </form>
 </template>
 
 <script>
 import Information from '@/components/Information.vue'
+import Burgers from './Burgers.vue'
 export default {
   data () {
     return {
@@ -48,7 +50,8 @@ export default {
     }
   },
   components: {
-    Information
+    Information,
+    Burgers
   }
 }
 </script>

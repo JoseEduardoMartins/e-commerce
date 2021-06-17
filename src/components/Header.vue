@@ -2,7 +2,7 @@
     <header>
         <img class="logo" src="../assets/logoTopBurger.png"/>
         <div class="menu">
-            <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Burgers</router-link>
+            <router-link class="menu__item" :to="{ name: 'Home', hash: '#burgers'}">Burgers</router-link>
             <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Bebidas</router-link>
             <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Acompanhamentos</router-link>
         </div>
@@ -46,7 +46,9 @@ header{
     z-index: 999;
 }
 .logo{
-    width: 110px;
+    width: 80px;
+    height: 40px;
+    margin-top: 5px;
     padding: 5px 5px;
 }
 .menu {
@@ -55,7 +57,7 @@ header{
 }
 
 .menu__item {
-    padding: 0 20px 0;
+    padding: 0 10px 0;
     color: #d26d34;
     font-size: 14px;
     text-decoration: none;
@@ -69,8 +71,8 @@ header{
     margin-right: 5px;
 }
     .cart_icon{
-        margin-top: 10px;
-        font-size: 30px;
+        margin-top: 12px;
+        font-size: 25px;
         color: #d26d34;
     }
         span {
@@ -78,9 +80,19 @@ header{
             font-size: 18px;
             vertical-align: 15px;
         }
-@media (min-width: 600px) {
+@media (min-width: 700px) {
+    .logo{
+        width: 110px;
+        height: 55px;
+        margin: 0;
+    }
     .menu__item {
         font-size: 18px;
+        padding: 0 20px 0;
+    }
+    .cart_icon{
+        margin-top: 10px;
+        font-size: 30px;
     }
 }
 </style>
