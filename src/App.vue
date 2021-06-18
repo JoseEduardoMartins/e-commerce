@@ -2,12 +2,14 @@
   <div id="app">
     <Header :cart='shoppingCart' :existKebab='existKebab'/>
     <Home/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import Home from '@/components/Home.vue'
+import Footer from '@/components/Footer.vue'
 export default {
   name: 'App',
   data () {
@@ -20,7 +22,8 @@ export default {
   },
   components: {
     Header,
-    Home
+    Home,
+    Footer
   }
 }
 </script>
