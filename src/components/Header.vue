@@ -3,8 +3,8 @@
         <img class="logo" src="../assets/logoTopBurger.png"/>
         <div class="menu">
             <router-link class="menu__item" :to="{ name: 'Home', hash: '#burgers'}">Burgers</router-link>
+            <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Porções de Batatas</router-link>
             <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Bebidas</router-link>
-            <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Acompanhamentos</router-link>
         </div>
         <div @mouseover="showCart" @mouseout="hideCart" class="cart">
             <i class="fas fa-shopping-cart cart_icon"><span>{{this.cart.amount}}</span></i>

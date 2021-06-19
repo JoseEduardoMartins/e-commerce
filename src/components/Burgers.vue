@@ -72,6 +72,7 @@ export default {
     border: 1px solid #1C1C1C;
   }
     .burger-item{
+      border: 1px solid red;
       display: flex;
       flex-wrap: wrap;
       align-content:space-between;
