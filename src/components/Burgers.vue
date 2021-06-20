@@ -3,7 +3,7 @@
     <div class="title">Burgers</div>
     <div class="container">
       <div v-for="burger in burgers" :key="burger.name" class="container-burger">
-        <div class="burger-item">
+        <div class="burger item">
           <div>
             <div class="sub-title">{{burger.name}}</div>
             <div class="description">{{burger.description}}</div> <br>
@@ -14,7 +14,7 @@
             <div class="value">R${{burger.value.toFixed(2)}}</div>
           </div>
         </div>
-        <div>
+        <div class="burger image">
           <img src="../assets/burger.jpg" alt="" class="image">
         </div>
       </div>
@@ -71,11 +71,13 @@ export default {
   .container-burger:hover{
     border: 1px solid #1C1C1C;
   }
-    .burger-item{
-      border: 1px solid red;
+    .burger.item{
       display: flex;
       flex-wrap: wrap;
       align-content:space-between;
+    }
+    .burger.image{
+      margin-left: 10px;
     }
     .sub-title{
       margin-bottom: 10px;

@@ -18,7 +18,7 @@
         </div>
         <div class="menu_item">
             <i class="far fa-credit-card icon gray"></i>
-            <div class="menu_item-text">forma de pagamento</div>
+            <div class="menu_item-text">Forma de pagamento</div>
         </div>
     </div>
   </div>
@@ -100,6 +100,9 @@ export default {
             font-size: 10px;
         }
 @media (min-width: 500px) {
+.information{
+    width: calc(100% - 50px);
+}
 .menu{
   width: calc(100% - 50px);
   padding-top: 7px;

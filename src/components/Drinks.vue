@@ -1,17 +1,17 @@
 <template>
-    <div id="drinks" class="drinks">
-        <div class="title">Bebidas</div>
-        <div class="container">
-            <div v-for="drink in drinks" :key="drink.name" class="container-drink">
-                <div class="drink-item">
-                    <div class="sub-title">{{drink.name}}</div>
-                    <div class="value">R${{drink.value.toFixed(2)}}</div>
-                </div>
-                <div>
-                    <img src="../assets/burger.jpg" alt="" class="image">
-                </div>
-            </div>
+  <div id="drinks" class="drinks">
+    <div class="title">Bebidas</div>
+    <div class="container">
+      <div v-for="drink in drinks" :key="drink.name" class="container-drink">
+        <div>
+            <div class="sub-title">{{drink.name}}</div>
+            <div class="value">A partir de R${{drink.value.toFixed(2)}}</div>
         </div>
+        <div>
+          <img src="../assets/burger.jpg" alt="" class="image">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,10 +20,10 @@ export default {
   data () {
     return {
       drinks: [
-        {name: 'Refrigerante 1,5l', value: 10, photo: ''},
-        {name: 'Refrigerante lata', value: 5, photo: ''},
-        {name: 'Cerveja', value: 5, photo: ''},
-        {name: 'Água', value: 3, photo: ''}
+        {name: 'Refrigerante 1,5l', value: 10},
+        {name: 'Refrigerante lata', value: 5},
+        {name: 'Cerveja', value: 3},
+        {name: 'Água', value: 3}
       ]
     }
   }
@@ -61,9 +61,6 @@ export default {
   .container-drink:hover{
     border: 1px solid #1C1C1C;
   }
-    .drink-item{
-      border: 1px solid red;
-    }
     .sub-title{
       margin-bottom: 10px;
       font-weight: bold;
@@ -75,7 +72,6 @@ export default {
     }
     .value{
       text-decoration: underline;
-      margin-bottom: 0;
     }
 @media (min-width: 500px) {
   .drinks{
