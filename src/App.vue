@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header :cart='shoppingCart' :existKebab='existKebab'/>
+      <Information/>
     <Home/>
     <Footer/>
   </div>
@@ -8,6 +9,7 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import Information from '@/components/Information.vue'
 import Home from '@/components/Home.vue'
 import Footer from '@/components/Footer.vue'
 export default {
@@ -22,6 +24,7 @@ export default {
   },
   components: {
     Header,
+    Information,
     Home,
     Footer
   }

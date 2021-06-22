@@ -1,9 +1,9 @@
 <template>
-  <div id="burgers" class="burgers">
+  <div id="burgers" class="container">
     <div class="title">Burgers</div>
-    <div class="container">
-      <div v-for="burger in burgers" :key="burger.name" class="container-burger">
-        <div class="burger item">
+    <div class="container-item">
+      <div v-for="burger in burgers" :key="burger.name" class="item-product">
+        <div class="product item">
           <div>
             <div class="sub-title">{{burger.name}}</div>
             <div class="description">{{burger.description}}</div> <br>
@@ -14,7 +14,7 @@
             <div class="value">R${{burger.value.toFixed(2)}}</div>
           </div>
         </div>
-        <div class="burger image">
+        <div class="product image">
           <img src="../assets/burger.jpg" alt="" class="image">
         </div>
       </div>
@@ -39,76 +39,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.burgers{
-  width: calc(100% - 20px);
-  margin: 95px auto 0;
-  background-color: #222222;
-  border-radius: 10px;
-  color: white;
-}
-  .title{
-    font-size: 25px;
-    font-weight: bold;
-    padding: 20px;
-  }
-  .container{
-    width: calc(100% - 40px);
-    margin: auto;
-    display: flex;
-    justify-content:space-around;
-    flex-wrap: wrap;
-  }
-  .container-burger{
-    width: 90%;
-    margin: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content:space-between;
-    border: 1px solid #222222;
-  }
-  .container-burger:hover{
-    border: 1px solid #1C1C1C;
-  }
-    .burger.item{
-      display: flex;
-      flex-wrap: wrap;
-      align-content:space-between;
-    }
-    .burger.image{
-      margin-left: 10px;
-    }
-    .sub-title{
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    .image{
-      width: 120px;
-      height: 120px;
-      border-radius: 10px;
-    }
-    .serve{
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .value{
-      text-decoration: underline;
-    }
-    .description{
-      font-size: 15px;
-    }
-@media (min-width: 500px) {
-  .burgers{
-    width: calc(100% - 50px);
-  }
-}
-@media (min-width: 700px) {
-  .burgers{
-      width: calc(100% - 100px);
-  }
-    .container-burger{
-      width: 45%;
-    }
-}
-</style>

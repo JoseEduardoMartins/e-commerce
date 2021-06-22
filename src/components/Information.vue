@@ -1,14 +1,23 @@
 <template>
   <div class="information">
     <div class="menu">
-        <div v-if="compareHour()" class="menu_item">
+        <div class="menu_item" v-if="compareHour()" v-on:mouseover="hour = !hour">
             <i class="fas fa-circle icon green"></i>
             <div class="menu_item-text">Aberto</div>
             <i class="fas fa-sort-down arrow"></i>
         </div>
-        <div v-if="!compareHour()" class="menu_item">
+        <div class="menu_item" v-if="!compareHour()" v-on:mouseover="hour = !hour">
             <i class="fas fa-circle icon red"></i>
             <div class="menu_item-text">Fechado</div>
+        </div>
+        <div v-if="hour">
+          <table v-for="day in days" :key="day[0]">
+            <tr>
+              <td>{{day[1]}}</td>
+              <td>{{day[2].toFixed(2)}}</td>
+              <td>{{day[3].toFixed(2)}}</td>
+            </tr>
+          </table>
         </div>
         <div class="menu_item">
             <i class="far fa-clock icon gray"></i>
@@ -18,9 +27,12 @@
             </div>
         </div>
         <div class="menu_item">
-            <i class="far fa-credit-card icon gray"></i>
-            <div class="menu_item-text">Forma de pagamento</div>
-            <i class="fas fa-sort-down arrow"></i>
+          <i class="far fa-credit-card icon gray"></i>
+          <select class="menu_item-text">
+            <option disabled selected>Forma de pagamento</option>
+            <option value="money">Dinheiro</option>
+            <option value="card">Cartão</option>
+          </select>
         </div>
     </div>
   </div>
@@ -32,31 +44,27 @@ export default {
     return {
       nowHour: new Date(),
       days: [
-        [0, 19, 23],
-        [1, 19, 23],
-        [2, 19, 23],
-        [3, 19, 23],
-        [4, 19, 23],
-        [5, 19, 23],
-        [6, 19, 23],
-        [7, 19, 23]
+        [0, 'DOM', 19, 23],
+        [1, 'SEG', 19, 23],
+        [2, 'TER', 19, 23],
+        [3, 'QUA', 19, 23],
+        [4, 'QUI', 19, 23],
+        [5, 'SEX', 19, 23],
+        [6, 'SAB', 19, 23]
       ],
-      payment: false
+      hour: false
     }
   },
   methods: {
     compareHour () {
       for (let i = 0; i < this.days.length; i++) {
         if (this.days[i][0] === this.nowHour.getDay()) {
-          if (this.nowHour.getHours() > this.days[i][1] && this.nowHour.getHours() <= this.days[i][2]) {
+          if (this.nowHour.getHours() > this.days[i][2] && this.nowHour.getHours() <= this.days[i][3]) {
             return true
           }
         }
       }
       return false
-    },
-    paymentForm () {
-
     }
   }
 }
@@ -84,6 +92,7 @@ export default {
         .menu_item{
             display: flex;
             align-items: center;
+            flex-wrap:wrap;
         }
         .icon{
             font-size: 20px;
@@ -104,6 +113,7 @@ export default {
             color: white;
             display: inline;
             font-size: 10px;
+            background-color: #222222;
         }
 @media (min-width: 500px) {
 .information{
