@@ -3,7 +3,8 @@
       <Information/>
       <Burgers/>
       <Accompaniments/>
-      <Drinks/>
+      <Drinks/><!--
+      <Product/>-->
     </form>
 </template>
 
@@ -12,6 +13,7 @@ import Information from '@/components/Information.vue'
 import Burgers from '@/components/Burgers.vue'
 import Accompaniments from '@/components/Accompaniments.vue'
 import Drinks from '@/components/Drinks.vue'
+import Product from '@/components/Product.vue'
 export default {
   data () {
     return {
@@ -57,7 +59,8 @@ export default {
     Information,
     Burgers,
     Accompaniments,
-    Drinks
+    Drinks,
+    Product
   }
 }
 </script>

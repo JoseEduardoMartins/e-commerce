@@ -4,6 +4,7 @@
         <div v-if="compareHour()" class="menu_item">
             <i class="fas fa-circle icon green"></i>
             <div class="menu_item-text">Aberto</div>
+            <i class="fas fa-sort-down arrow"></i>
         </div>
         <div v-if="!compareHour()" class="menu_item">
             <i class="fas fa-circle icon red"></i>
@@ -19,6 +20,7 @@
         <div class="menu_item">
             <i class="far fa-credit-card icon gray"></i>
             <div class="menu_item-text">Forma de pagamento</div>
+            <i class="fas fa-sort-down arrow"></i>
         </div>
     </div>
   </div>
@@ -38,7 +40,8 @@ export default {
         [5, 19, 23],
         [6, 19, 23],
         [7, 19, 23]
-      ]
+      ],
+      payment: false
     }
   },
   methods: {
@@ -51,6 +54,9 @@ export default {
         }
       }
       return false
+    },
+    paymentForm () {
+
     }
   }
 }
