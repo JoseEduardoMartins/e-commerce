@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header :cart='shoppingCart' :existKebab='existKebab'/>
-      <Information/>
+    <Information/>
     <Home/>
     <Footer/>
   </div>

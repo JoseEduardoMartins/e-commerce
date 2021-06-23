@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="product image">
-          <img src="../assets/burger.jpg" alt="" class="image">
+          <img src="../assets/burger.jpg" alt="imagem do prato" class="image">
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="Accompaniments" class="container accompaniments">
+  <div id="accompaniments" class="container accompaniments">
     <div class="title">Porções de Batatas</div>
     <div class="container-item">
       <div v-for="Accompaniment in Accompaniments" :key="Accompaniment.name" class="item-product">

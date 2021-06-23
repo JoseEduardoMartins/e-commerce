@@ -1,30 +1,28 @@
 <template>
-  <div class="information">
+  <div id="information" class="information">
     <div class="menu">
-        <div class="menu_item" v-if="compareHour()" v-on:mouseover="hour = !hour">
-            <i class="fas fa-circle icon green"></i>
-            <div class="menu_item-text">Aberto</div>
-            <i class="fas fa-sort-down arrow"></i>
+        <div class="menu_item" @mouseover="tableHour()" @mouseout="tableHour()">
+          <i class="fas fa-circle icon green" v-if="compareHour()"></i>
+          <div class="menu_item-text" v-if="compareHour()">Aberto</div>
+          <i class="fas fa-circle icon red" v-if="!compareHour()"></i>
+          <div class="menu_item-text" v-if="!compareHour()">Fechado</div>
         </div>
-        <div class="menu_item" v-if="!compareHour()" v-on:mouseover="hour = !hour">
-            <i class="fas fa-circle icon red"></i>
-            <div class="menu_item-text">Fechado</div>
-        </div>
-        <div v-if="hour">
-          <table v-for="day in days" :key="day[0]">
-            <tr>
-              <td>{{day[1]}}</td>
-              <td>{{day[2].toFixed(2)}}</td>
-              <td>{{day[3].toFixed(2)}}</td>
-            </tr>
-          </table>
-        </div>
+          <div class="menu_item-Hour" v-if="hour">
+            <table class="item-Hour">
+              <tr v-for="day in days" :key="day[0]">
+                <td>{{day[1]}} - </td>
+                <td>{{day[2]}}:00 às </td>
+                <td> {{day[3]}}:00</td>
+              </tr>
+            </table>
+            <div class="item-Hour-text">Horario de brasilia</div>
+          </div>
         <div class="menu_item">
-            <i class="far fa-clock icon gray"></i>
-            <div class="menu_item-text">
-                <div>Tempo de entrega</div>
-                <div>30 - 40 minutos</div>
-            </div>
+          <i class="far fa-clock icon gray"></i>
+          <div class="menu_item-text">
+            <div>Tempo de entrega</div>
+            <div>30 - 40 minutos</div>
+          </div>
         </div>
         <div class="menu_item">
           <i class="far fa-credit-card icon gray"></i>
@@ -65,6 +63,13 @@ export default {
         }
       }
       return false
+    },
+    tableHour () {
+      if (this.hour === false) {
+        this.hour = true
+      } else {
+        this.hour = false
+      }
     }
   }
 }
@@ -94,6 +99,21 @@ export default {
             align-items: center;
             flex-wrap:wrap;
         }
+        .menu_item-Hour{
+          position: absolute;
+          top: 40px;
+          left: 0;
+          border: 1px solid white;
+          border-radius: 5px;
+          background-color: #222222;
+          color: white;
+        }
+          .item-Hour{
+            padding: 10px;
+          }
+          .item-Hour-text{
+            text-align: center;
+          }
         .icon{
             font-size: 20px;
             margin-right: 10px;

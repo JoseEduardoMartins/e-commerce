@@ -1,10 +1,10 @@
 <template>
     <header>
-        <img class="logo" src="../assets/logoTopBurger.png"/>
+        <img class="logo" src="../assets/logoTopBurger.png" @click="moveTop(top)"/>
         <div class="menu">
-            <router-link class="menu__item" :to="{ name: 'Home', hash: '#burgers'}">Burgers</router-link>
-            <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Porções de Batatas</router-link>
-            <router-link class="menu__item" :to="{ name: 'Home', hash: '#whoWeAre'}">Bebidas</router-link>
+            <a class="menu__item" @click="moveTop(burgers)">Burgers</a>
+            <a class="menu__item" @click="moveTop(accompaniments)">Porções de Batatas</a>
+            <a class="menu__item" @click="moveTop(drinks)">Bebidas</a>
         </div>
         <div @mouseover="showCart" @mouseout="hideCart" class="cart">
             <i class="fas fa-shopping-cart cart_icon"><span>{{this.cart.amount}}</span></i>
@@ -17,7 +17,11 @@ export default {
   data () {
     return {
       visibilidade: false,
-      kebabs: this.cart.arrayKebab
+      kebabs: this.cart.arrayKebab,
+      top: 0,
+      burgers: 'burgers',
+      accompaniments: 'accompaniments',
+      drinks: 'drinks'
     }
   },
   props: {
@@ -25,11 +29,20 @@ export default {
     existKebab: Boolean
   },
   methods: {
-    showCart: function () {
+    showCart () {
       this.visibilidade = true
     },
-    hideCart: function () {
+    hideCart () {
       this.visibilidade = false
+    },
+    moveTop (to) {
+      if (to !== 0) {
+        let element = document.getElementById(to)
+        let top = element.offsetTop
+        window.scrollTo(0, top - 70)
+      } else {
+        window.scrollTo(0, to)
+      }
     }
   }
 }
@@ -50,6 +63,7 @@ header{
     height: 40px;
     margin-top: 5px;
     padding: 5px 5px;
+    cursor: pointer;
 }
 .menu {
     display: flex;
@@ -62,6 +76,7 @@ header{
     font-size: 14px;
     text-decoration: none;
     position: relative;
+    cursor: pointer;
 }
 .menu__item:hover {
     text-decoration: underline;
