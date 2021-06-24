@@ -1,10 +1,10 @@
 <template>
     <form>
-      <Burgers @openProduct="getProduct"/>
+      <Burgers @openProduct="openProduct"/>
       <Accompaniments/>
       <Drinks/>
       <div v-if="visibilityProduct">
-        <Product :product="product"/>
+        <Product @closeProduct="closeProduct" :product="product"/>
       </div>
     </form>
 </template>
@@ -29,9 +29,12 @@ export default {
     }
   },
   methods: {
-    getProduct (data) {
+    openProduct (data) {
       this.visibilityProduct = !this.visibilityProduct
       this.product = data
+    },
+    closeProduct (data) {
+      this.visibilityProduct = data
     },
     getDrink (data) {
       if (this.shoppingCart.arrayDrinks.length > 0) {
