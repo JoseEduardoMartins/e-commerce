@@ -2,7 +2,7 @@
   <div id="burgers" class="container">
     <div class="title">Burgers</div>
     <div class="container-item">
-      <div v-for="burger in burgers" :key="burger.name" class="item-product">
+      <div v-for="burger in burgers" :key="burger.name" class="item-product" @click="emitProduct(burger)">
         <div class="product item">
           <div>
             <div class="sub-title">{{burger.name}}</div>
@@ -35,6 +35,11 @@ export default {
         {name: 'TOP BURGER', value: 25, description: '(pão roseta ou brioche, hambúrguer artesanal 200g, bacon, ovo frito, cheddar cremoso, queijo mussarela, alface americano, tomate, cebola roxa e maionese da casa)', serve: 1},
         {name: 'DOUBLE CHEDDAR', value: 20, description: '(pão roseta ou brioche, 2 hambúrguer artesanal de 100g cada, cheddar cremoso e maionese da casa)', serve: 1}
       ]
+    }
+  },
+  methods: {
+    emitProduct (burger) {
+      this.$emit('openProduct', burger)
     }
   }
 }

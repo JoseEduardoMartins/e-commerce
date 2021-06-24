@@ -1,22 +1,31 @@
 <template>
   <div id="information" class="information">
     <div class="menu">
-        <div class="menu_item" @mouseover="tableHour()" @mouseout="tableHour()">
-          <i class="fas fa-circle icon green" v-if="compareHour()"></i>
-          <div class="menu_item-text" v-if="compareHour()">Aberto</div>
-          <i class="fas fa-circle icon red" v-if="!compareHour()"></i>
-          <div class="menu_item-text" v-if="!compareHour()">Fechado</div>
+        <div class="menu_item" v-if="compareHour()" @mouseover="tableHour()" @mouseout="tableHour()">
+          <i class="fas fa-circle icon green"></i>
+          <div class="menu_item-text">Aberto</div>
         </div>
-          <div class="menu_item-Hour" v-if="hour">
-            <table class="item-Hour">
-              <tr v-for="day in days" :key="day[0]">
+        <div class="menu_item" v-else @mouseover="tableHour()" @mouseout="tableHour()">
+          <i class="fas fa-circle icon red"></i>
+          <div class="menu_item-text">Fechado</div>
+        </div>
+        <div class="menu_item-Hour" v-if="hour">
+          <table class="item-Hour">
+            <tr v-for="day in days" :key="day[0]">
+              <div v-if="day[0] == now.getDay()" class="nowDay">
                 <td>{{day[1]}} - </td>
                 <td>{{day[2]}}:00 às </td>
                 <td> {{day[3]}}:00</td>
-              </tr>
-            </table>
-            <div class="item-Hour-text">Horario de brasilia</div>
-          </div>
+              </div>
+              <div v-else>
+                <td>{{day[1]}} - </td>
+                <td>{{day[2]}}:00 às </td>
+                <td> {{day[3]}}:00</td>
+              </div>
+            </tr>
+          </table>
+          <div class="item-Hour-text">Horario de brasilia</div>
+        </div>
         <div class="menu_item">
           <i class="far fa-clock icon gray"></i>
           <div class="menu_item-text">
@@ -40,15 +49,15 @@
 export default {
   data () {
     return {
-      nowHour: new Date(),
+      now: new Date(),
       days: [
-        [0, 'DOM', 19, 23],
-        [1, 'SEG', 19, 23],
-        [2, 'TER', 19, 23],
-        [3, 'QUA', 19, 23],
-        [4, 'QUI', 19, 23],
-        [5, 'SEX', 19, 23],
-        [6, 'SAB', 19, 23]
+        [0, 'DOM', 19, 23, 'diaUtil'],
+        [1, 'SEG', 19, 23, 'diaUtil'],
+        [2, 'TER', 19, 23, 'diaUtil'],
+        [3, 'QUA', 19, 23, 'diaUtil'],
+        [4, 'QUI', 19, 23, 'diaUtil'],
+        [5, 'SEX', 19, 23, 'diaUtil'],
+        [6, 'SAB', 19, 23, 'diaUtil']
       ],
       hour: false
     }
@@ -56,8 +65,8 @@ export default {
   methods: {
     compareHour () {
       for (let i = 0; i < this.days.length; i++) {
-        if (this.days[i][0] === this.nowHour.getDay()) {
-          if (this.nowHour.getHours() > this.days[i][2] && this.nowHour.getHours() <= this.days[i][3]) {
+        if (this.days[i][0] === this.now.getDay()) {
+          if (this.now.getHours() >= this.days[i][2] && this.now.getHours() <= this.days[i][3] && this.days[i][4] === 'diaUtil') {
             return true
           }
         }
@@ -110,6 +119,9 @@ export default {
         }
           .item-Hour{
             padding: 10px;
+          }
+          .nowDay{
+            background-color: #4F4F4F;
           }
           .item-Hour-text{
             text-align: center;

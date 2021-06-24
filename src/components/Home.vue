@@ -1,9 +1,11 @@
 <template>
     <form>
-      <Burgers/>
+      <Burgers @openProduct="getProduct"/>
       <Accompaniments/>
-      <Drinks/><!--
-      <Product/>-->
+      <Drinks/>
+      <div v-if="visibilityProduct">
+        <Product :product="product"/>
+      </div>
     </form>
 </template>
 
@@ -21,10 +23,16 @@ export default {
         amount: 0,
         total: 0
       },
-      arrayAddress: []
+      arrayAddress: [],
+      product: {},
+      visibilityProduct: false
     }
   },
   methods: {
+    getProduct (data) {
+      this.visibilityProduct = !this.visibilityProduct
+      this.product = data
+    },
     getDrink (data) {
       if (this.shoppingCart.arrayDrinks.length > 0) {
         if (this.getDrinkArray(data) !== true) {

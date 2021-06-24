@@ -56,7 +56,7 @@ header{
     background-color: #222222;
     display: flex;
     justify-content: space-between;
-    z-index: 999;
+    z-index: 998;
 }
 .logo{
     width: 80px;
