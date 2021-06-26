@@ -100,8 +100,8 @@ export default {
         position: relative;
     }
         .product_image{
-            width: 450px;
-            height: 450px;
+            width: 200px;
+            height: 200px;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -246,4 +246,27 @@ export default {
                 padding: 10px;
                 font-weight: bold;
             }
+@media (min-width: 900px) {
+.product{
+    display: flex;
+    justify-content:space-around;
+    width: calc(100% - 100px);
+    height: calc(100% - 50px);
+}
+    .product_item{
+        width: 50%;
+        height: 100%;
+        position: relative;
+    }
+        .product_image{
+            width: 350px;
+            height: 350px;
+        }
+}
+@media (min-width: 1100px) {
+    .product_image{
+            width: 450px;
+            height: 450px;
+        }
+}
 </style>
