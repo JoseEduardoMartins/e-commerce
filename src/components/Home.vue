@@ -30,10 +30,12 @@ export default {
   },
   methods: {
     openProduct (data) {
+      document.documentElement.style.overflow = 'hidden'
       this.visibilityProduct = !this.visibilityProduct
       this.product = data
     },
     closeProduct (data) {
+      document.documentElement.style.overflow = 'auto'
       this.visibilityProduct = data
     },
     getDrink (data) {

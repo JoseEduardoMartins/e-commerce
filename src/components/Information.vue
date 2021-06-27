@@ -15,12 +15,14 @@
               <div v-if="day[0] == now.getDay()" class="nowDay">
                 <td>{{day[1]}} - </td>
                 <td>{{day[2]}}:00 às </td>
-                <td> {{day[3]}}:00</td>
+                <td v-if="day[3]==0"> {{day[3]}}0:00</td>
+                <td v-else> {{day[3]}}:00</td>
               </div>
               <div v-else>
                 <td>{{day[1]}} - </td>
                 <td>{{day[2]}}:00 às </td>
-                <td> {{day[3]}}:00</td>
+                <td v-if="day[3]==0"> {{day[3]}}0:00</td>
+                <td v-else> {{day[3]}}:00</td>
               </div>
             </tr>
           </table>
@@ -51,13 +53,13 @@ export default {
     return {
       now: new Date(),
       days: [
-        [0, 'DOM', 19, 23, 'diaUtil'],
-        [1, 'SEG', 19, 23, 'diaUtil'],
-        [2, 'TER', 19, 23, 'diaUtil'],
-        [3, 'QUA', 19, 23, 'diaUtil'],
-        [4, 'QUI', 19, 23, 'diaUtil'],
-        [5, 'SEX', 19, 23, 'diaUtil'],
-        [6, 'SAB', 19, 23, 'diaUtil']
+        [0, 'DOM', 19, 0, 'diaUtil'],
+        [1, 'SEG', 19, 0, 'diaUtil'],
+        [2, 'TER', 19, 0, 'diaUtil'],
+        [3, 'QUA', 19, 0, 'diaUtil'],
+        [4, 'QUI', 19, 0, 'diaUtil'],
+        [5, 'SEX', 19, 0, 'diaUtil'],
+        [6, 'SAB', 19, 0, 'diaUtil']
       ],
       hour: false
     }
@@ -66,8 +68,15 @@ export default {
     compareHour () {
       for (let i = 0; i < this.days.length; i++) {
         if (this.days[i][0] === this.now.getDay()) {
-          if (this.now.getHours() >= this.days[i][2] && this.now.getHours() <= this.days[i][3] && this.days[i][4] === 'diaUtil') {
-            return true
+          if (this.days[i][3] === 0) {
+            if (this.now.getHours() >= this.days[i][2] && this.now.getHours() <= 23 && this.days[i][4] === 'diaUtil') {
+              return true
+            }
+          }
+          if (this.days[i][3] !== 0) {
+            if (this.now.getHours() >= this.days[i][2] && this.now.getHours() <= this.days[i][3] && this.days[i][4] === 'diaUtil') {
+              return true
+            }
           }
         }
       }
