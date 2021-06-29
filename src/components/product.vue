@@ -6,22 +6,22 @@
     </div>
     <div class="product_item second">
         <div class="second_header">
-            <div class="header_title">{{produce.name}}</div>
+            <div class="header_title">{{product.name}}</div>
             <i class="fas fa-times header_icon computer" @click="exitProduct()"></i>
         </div>
         <div class="second_body">
             <div class="body">
-                <div class="body_description info">{{produce.description}}</div>
-                <div class="body_serve info" v-if="produce.serve == 1">Serve {{produce.serve}} pessoa</div>
-                <div class="body_serve info" v-else>Serve {{produce.serve}} pessoas</div>
-                <div class="body_value info">R${{produce.value.toFixed(2)}}</div>
+                <div class="body_description info">{{product.description}}</div>
+                <div class="body_serve info" v-if="product.serve == 1">Serve {{product.serve}} pessoa</div>
+                <div class="body_serve info" v-else>Serve {{product.serve}} pessoas</div>
+                <div class="body_value info">R${{product.value.toFixed(2)}}</div>
                 <div class="body_item main">
                     <div class="body_container">
                         <div class="container_title">Pão</div>
                         <div class="container_sub-title">Escolha 1 opção.</div>
                     </div>
                 </div>
-                <div v-for="bread in produce.bread" :key="bread" class="body_item">
+                <div v-for="bread in product.bread" :key="bread" class="body_item">
                     <div class="bread">
                         <label class="container_title">{{bread}}</label>
                         <input class="bread_input" type="radio" v-model="food.bread" name="bread" :value="bread">
@@ -33,11 +33,11 @@
                         <div class="container_sub-title">Escolha até 2 opções.</div>
                     </div>
                 </div>
-                <div v-for="additional in produce.additional" :key="additional[0]" class="body_item ">
+                <div v-for="additional in arrayAdditional" :key="additional[0]" class="body_item ">
                     <div class="body_container">
-                        <div class="container_title">{{additional[0]}}</div>
-                        <div class="container_sub-title">+R${{additional[1].toFixed(2)}}</div>
-                        <input class="container_number additional" @click="addTotal()" v-model.number="additional[2]" type="number" max="2" min="0">
+                        <div class="container_title">{{additional.name}}</div>
+                        <div class="container_sub-title">+R${{additional.value.toFixed(2)}}</div>
+                        <input class="container_number additional" @click="addTotal()" v-model.number="additional.amount" type="number" max="2" min="0">
                     </div>
                 </div>
                 <div>
@@ -61,7 +61,6 @@
 export default {
   data () {
     return {
-      produce: this.product,
       food: {
         name: this.product.name,
         description: this.product.description,
@@ -72,6 +71,7 @@ export default {
         value: this.product.value,
         total: this.product.value
       },
+      arrayAdditional: this.product.additional,
       amount: 0
     }
   },
@@ -84,17 +84,15 @@ export default {
     },
     addProduct () {
       if (this.food.bread !== '') {
-        this.food.additional = this.produce.additional
-        console.log(this.produce)
       } else {
         alert('Selecione o tipo de pão que você deseja.')
       }
     },
     addTotal () {
       this.food.total = this.food.value
-      for (let i = 0; i <= this.produce.additional.length; i++) {
-        this.food.total += this.produce.additional[i][2] * this.produce.additional[i][1]
-        console.log(this.produce.additional[i][1])
+      console.log(this.arrayAdditional)
+      for (let i = 0; i <= this.arrayAdditional.length; i++) {
+        this.food.total += this.arrayAdditional[i].amount * this.arrayAdditional[i].value
       }
       this.food.total *= this.food.amount
     }
