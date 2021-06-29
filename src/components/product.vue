@@ -33,11 +33,11 @@
                         <div class="container_sub-title">Escolha até 2 opções.</div>
                     </div>
                 </div>
-                <div v-for="product in produce.additional" :key="product[0]" class="body_item ">
+                <div v-for="additional in produce.additional" :key="additional[0]" class="body_item ">
                     <div class="body_container">
-                        <div class="container_title">{{product[0]}}</div>
-                        <div class="container_sub-title">+R${{product[1].toFixed(2)}}</div>
-                        <input class="container_number additional" v-model="product[2]" type="number" max="2" min="0">
+                        <div class="container_title">{{additional[0]}}</div>
+                        <div class="container_sub-title">+R${{additional[1].toFixed(2)}}</div>
+                        <input class="container_number additional" @click="addTotal()" v-model.number="additional[2]" type="number" max="2" min="0">
                     </div>
                 </div>
                 <div>
@@ -46,10 +46,10 @@
                 </div>
             </div>
             <div class="body_footer">
-                <input class="container_number plus" v-model="food.amount" type="number" min="0">
+                <input class="container_number plus" @click="addTotal()" v-model.number="food.amount" type="number" min="1">
                 <div class="footer_add" @click="addProduct()">
                     <div class="footer_add_text">Adicionar</div>
-                    <div class="footer_add_text">R${{food.value.toFixed(2)}}</div>
+                    <div class="footer_add_text">R${{food.total.toFixed(2)}}</div>
                 </div>
             </div>
         </div>
@@ -66,11 +66,11 @@ export default {
         name: this.product.name,
         description: this.product.description,
         bread: '',
-        additional: this.product.additional,
+        additional: [],
         comment: '',
-        amount: 0,
+        amount: 1,
         value: this.product.value,
-        total: 0
+        total: this.product.value
       },
       amount: 0
     }
@@ -79,8 +79,24 @@ export default {
     exitProduct () {
       this.$emit('closeProduct', false)
     },
+    submitProduct () {
+      this.$emit('setProduct', this.food)
+    },
     addProduct () {
-      console.log(this.food)
+      if (this.food.bread !== '') {
+        this.food.additional = this.produce.additional
+        console.log(this.produce)
+      } else {
+        alert('Selecione o tipo de pão que você deseja.')
+      }
+    },
+    addTotal () {
+      this.food.total = this.food.value
+      for (let i = 0; i <= this.produce.additional.length; i++) {
+        this.food.total += this.produce.additional[i][2] * this.produce.additional[i][1]
+        console.log(this.produce.additional[i][1])
+      }
+      this.food.total *= this.food.amount
     }
   },
   props: {
@@ -298,7 +314,6 @@ export default {
     }
     .product_item{
       width: 50%;
-      height: 100%;
     }
     .product_item.first{
       height: 100%;

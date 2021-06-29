@@ -4,7 +4,7 @@
       <Accompaniments/>
       <Drinks/>
       <div v-if="visibilityProduct">
-        <Product @closeProduct="closeProduct" :product="product"/>
+        <Product @closeProduct="closeProduct" @setProduct="setProduct" :product="product"/>
       </div>
     </form>
 </template>
@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       shoppingCart: {
-        arrayKebab: [],
+        arrayProduct: [],
         arrayDrinks: [],
         amount: 0,
         total: 0
@@ -37,6 +37,9 @@ export default {
     closeProduct (data) {
       document.documentElement.style.overflow = 'auto'
       this.visibilityProduct = data
+    },
+    setProduct (data) {
+      this.shoppingCart.arrayProduct.push(data)
     },
     getDrink (data) {
       if (this.shoppingCart.arrayDrinks.length > 0) {
