@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header :cart='shoppingCart' :existKebab='existKebab'/>
+    <Header :cart='shoppingCart' :existProduct='existProduct'/>
     <Information/>
-    <Home/>
+    <Home @addProduct="addProduct"/>
     <Footer/>
   </div>
 </template>
@@ -17,9 +17,19 @@ export default {
   data () {
     return {
       shoppingCart: {
-        amount: 0
+        arrayProduct: [],
+        amount: 0,
+        total: 0
       },
-      existKebab: false
+      existProduct: false
+    }
+  },
+  methods: {
+    addProduct (data) {
+      this.shoppingCart.arrayProduct.push(data)
+      this.existProduct = true
+      this.shoppingCart.amount += 1
+      this.shoppingCart.total += data.total
     }
   },
   components: {

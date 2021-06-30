@@ -1,8 +1,8 @@
 <template>
     <form>
       <Burgers @openProduct="openProduct"/>
-      <Accompaniments/>
-      <Drinks/>
+      <Accompaniments @openProduct="openProduct"/>
+      <Drinks @openProduct="openProduct"/>
       <div v-if="visibilityProduct">
         <Product @closeProduct="closeProduct" @setProduct="setProduct" :product="product"/>
       </div>
@@ -17,12 +17,6 @@ import Product from '@/components/Product.vue'
 export default {
   data () {
     return {
-      shoppingCart: {
-        arrayProduct: [],
-        arrayDrinks: [],
-        amount: 0,
-        total: 0
-      },
       arrayAddress: [],
       product: {},
       visibilityProduct: false
@@ -39,25 +33,7 @@ export default {
       this.visibilityProduct = data
     },
     setProduct (data) {
-      this.shoppingCart.arrayProduct.push(data)
-    },
-    getDrink (data) {
-      if (this.shoppingCart.arrayDrinks.length > 0) {
-        if (this.getDrinkArray(data) !== true) {
-          this.shoppingCart.arrayDrinks.push(data)
-        }
-      } else {
-        this.shoppingCart.arrayDrinks.push(data)
-      }
-    },
-    getDrinkArray (data) {
-      for (let i = 0; i < this.shoppingCart.arrayDrinks.length; i++) {
-        if (this.shoppingCart.arrayDrinks[i][0] === data[0]) {
-          this.shoppingCart.arrayDrinks.splice(i, 1)
-          this.shoppingCart.arrayDrinks.push(data)
-          return true
-        }
-      }
+      this.$emit('addProduct', data)
     },
     getAddress (data) {
       if (this.arrayAddress.length === 0) {

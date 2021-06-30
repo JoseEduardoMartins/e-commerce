@@ -15,32 +15,36 @@
                 <div class="body_serve info" v-if="product.serve == 1">Serve {{product.serve}} pessoa</div>
                 <div class="body_serve info" v-else>Serve {{product.serve}} pessoas</div>
                 <div class="body_value info">R${{product.value.toFixed(2)}}</div>
-                <div class="body_item main">
+                <div v-if="product.bread !== undefined">
+                  <div class="body_item main">
                     <div class="body_container">
-                        <div class="container_title">Pão</div>
-                        <div class="container_sub-title">Escolha 1 opção.</div>
+                      <div class="container_title">Pão</div>
+                      <div class="container_sub-title">Escolha 1 opção.</div>
                     </div>
-                </div>
-                <div v-for="bread in product.bread" :key="bread" class="body_item">
+                  </div>
+                  <div v-for="bread in product.bread" :key="bread" class="body_item">
                     <div class="bread">
                         <label class="container_title">{{bread}}</label>
                         <input class="bread_input" type="radio" v-model="food.bread" name="bread" :value="bread">
                     </div>
+                  </div>
                 </div>
-                <div class="body_item main">
-                    <div class="body_container">
-                        <div class="container_title">Adicionais</div>
-                        <div class="container_sub-title">Escolha até 2 opções.</div>
-                    </div>
+                <div v-if="arrayAdditional !== undefined">
+                  <div class="body_item main">
+                      <div class="body_container">
+                          <div class="container_title">Adicionais</div>
+                          <div class="container_sub-title">Escolha até 2 opções.</div>
+                      </div>
+                  </div>
+                  <div v-for="additional in arrayAdditional" :key="additional.name" class="body_item ">
+                      <div class="body_container">
+                          <div class="container_title">{{additional.name}}</div>
+                          <div class="container_sub-title">+R${{additional.value.toFixed(2)}}</div>
+                          <input class="container_number additional" @click="addTotal()" v-model.number="additional.amount" type="number" max="2" min="0">
+                      </div>
+                  </div>
                 </div>
-                <div v-for="additional in arrayAdditional" :key="additional[0]" class="body_item ">
-                    <div class="body_container">
-                        <div class="container_title">{{additional.name}}</div>
-                        <div class="container_sub-title">+R${{additional.value.toFixed(2)}}</div>
-                        <input class="container_number additional" @click="addTotal()" v-model.number="additional.amount" type="number" max="2" min="0">
-                    </div>
-                </div>
-                <div>
+                <div class="body_comment">
                     <div class="comment_title">Algum comentário?</div>
                     <textarea class="comment" cols="30" rows="10" maxlength="140" v-model="food.comment" placeholder="Ex: tirar tomate, alface etc."></textarea>
                 </div>
@@ -83,16 +87,25 @@ export default {
       this.$emit('setProduct', this.food)
     },
     addProduct () {
-      if (this.food.bread !== '') {
+      this.food.additional = this.arrayAdditional
+      if (this.arrayAdditional !== undefined | this.product.bread !== undefined) {
+        if (this.food.bread !== '') {
+          this.submitProduct()
+          this.exitProduct()
+        } else {
+          alert('Selecione o tipo de pão que você deseja.')
+        }
       } else {
-        alert('Selecione o tipo de pão que você deseja.')
+        this.submitProduct()
+        this.exitProduct()
       }
     },
     addTotal () {
       this.food.total = this.food.value
-      console.log(this.arrayAdditional)
-      for (let i = 0; i <= this.arrayAdditional.length; i++) {
-        this.food.total += this.arrayAdditional[i].amount * this.arrayAdditional[i].value
+      if (this.arrayAdditional !== undefined) {
+        for (let i = 0; i < this.arrayAdditional.length; i++) {
+          this.food.total += this.arrayAdditional[i].amount * this.arrayAdditional[i].value
+        }
       }
       this.food.total *= this.food.amount
     }
@@ -240,6 +253,9 @@ export default {
                 transform: rotate(90deg) scale(0.8, 0.9);
                 cursor:pointer;
             }
+    .body_comment{
+      margin-top: 10px;
+    }
     .comment_title{
         margin-left: 10px;
     }

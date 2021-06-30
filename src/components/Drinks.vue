@@ -2,7 +2,7 @@
   <div id="drinks" class="container drinks">
     <div class="title">Bebidas</div>
     <div class="container-item">
-      <div v-for="drink in drinks" :key="drink.name" class="item-product">
+      <div v-for="drink in drinks" :key="drink.name" class="item-product" @click="emitProduct(drink)">
         <div>
             <div class="sub-title">{{drink.name}}</div>
             <div class="value">A partir de R${{drink.value.toFixed(2)}}</div>
@@ -25,6 +25,11 @@ export default {
         {name: 'Cerveja', value: 3},
         {name: 'Água', value: 3}
       ]
+    }
+  },
+  methods: {
+    emitProduct (drink) {
+      this.$emit('openProduct', drink)
     }
   }
 }

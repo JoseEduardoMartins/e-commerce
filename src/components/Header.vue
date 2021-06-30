@@ -9,15 +9,17 @@
         <div @mouseover="showCart" @mouseout="hideCart" class="cart">
             <i class="fas fa-shopping-cart cart_icon"><span>{{this.cart.amount}}</span></i>
         </div>
+        <ShoppingCart :cart='shoppingCart' :existKebab='existProduct' :visibilidade='visibilidade'/>
     </header>
 </template>
 
 <script>
+import ShoppingCart from '@/components/ShoppingCart.vue'
 export default {
   data () {
     return {
       visibilidade: false,
-      kebabs: this.cart.arrayKebab,
+      shoppingCart: this.cart,
       top: 0,
       burgers: 'burgers',
       accompaniments: 'accompaniments',
@@ -26,7 +28,7 @@ export default {
   },
   props: {
     cart: Object,
-    existKebab: Boolean
+    existProduct: Boolean
   },
   methods: {
     showCart () {
@@ -44,6 +46,9 @@ export default {
         window.scrollTo(0, to)
       }
     }
+  },
+  components: {
+    ShoppingCart
   }
 }
 </script>

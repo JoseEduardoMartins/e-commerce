@@ -1,34 +1,44 @@
 <template>
   <div id="cart" class="shoppingCart" v-if="visibilidade">
-            <div v-if="!existKebab">
-                <div class="shoppingCart_nullText">Seu carrinho está vazio</div>
-            </div>
-            <div v-else-if="existKebab">
-                <div v-for="kebab in kebabs" :key="kebab.id">
-                    <div class="shoppingCart_item">
-                        <div class="title_kebab">Kebab</div>
-                        <div>
-                            <i class="fas fa-trash-alt delete"></i>
-                        </div>
-                        <div class="item_kebab">Carne - {{kebab.carne}}</div>
-                        <div class="item_kebab">Saladas - {{kebab.saladas}}</div>
-                        <div class="item_kebab">Adicionais - {{kebab.adicionais}}</div>
-                        <div class="item_kebab">Brinde - {{kebab.brinde}}</div>
-                        <div class="item_kebab">Quantidade - {{kebab.quantidade}}</div>
-                        <div class="item_kebab total">Total - R$ {{kebab.total.toFixed(2)}}</div>
-                    </div>
+    <div v-if="!existKebab">
+        <div class="shoppingCart_nullText">Seu carrinho está vazio</div>
+    </div>
+    <div v-else-if="existKebab">
+        <div v-for="product in arrayProduct" :key="product.id">
+            <div class="shoppingCart_item">
+                <div class="title_product">{{product.name}}</div>
+                <div>
+                    <i class="fas fa-trash-alt delete"></i>
                 </div>
-                <div class="shoppingCart_item subTotal">
-                    <div class="subtotal">Subtotal</div>
-                    <div class="item_kebab total cart">Total - R$ {{this.cart.total.toFixed(2)}}</div>
+                <div class="item_product">{{product.bread}}</div>
+                <div v-for="additional in product.additional" :key="additional[0]">
+                    <div v-if="additional.amount !== 0" class="item_product"> {{additional.amount}}x{{additional.name}}</div>
                 </div>
+                <div class="item_product">Quantidade - {{product.amount}}</div>
+                <div class="item_product total">Total - R$ {{product.total.toFixed(2)}}</div>
             </div>
         </div>
+        <div class="shoppingCart_item subTotal">
+            <div class="subtotal">Subtotal</div>
+            <div class="item_product total cart">Total - R$ {{this.cart.total.toFixed(2)}}</div>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      shoppingCart: this.cart,
+      arrayProduct: this.cart.arrayProduct
+    }
+  },
+  props: {
+    cart: Object,
+    existKebab: Boolean,
+    visibilidade: Boolean
+  }
 }
 </script>
 
@@ -62,7 +72,7 @@ export default {
     font-size: 13px;
     font-weight: bold;
 }
-.title_kebab{
+.title_product{
     font-weight: bold;
     text-align: center;
     font-size: 15px;
@@ -75,17 +85,19 @@ export default {
     font-size: 25px;
     color: red;
 }
-.item_kebab{
+.item_product{
     font-size: 13px;
+    margin-top: 3px;
+    color: gray;
 }
-.item_kebab.total{
+.item_product.total{
     position: absolute;
     right: 0px;
     bottom: 0px;
     font-weight: bold;
-    color: #0075ff;
+    color: black;
 }
-.item_kebab.total.cart{
+.item_product.total.cart{
     font-size: 15px;
 }
 </style>

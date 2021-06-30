@@ -2,7 +2,7 @@
   <div id="accompaniments" class="container accompaniments">
     <div class="title">Porções de Batatas</div>
     <div class="container-item">
-      <div v-for="Accompaniment in Accompaniments" :key="Accompaniment.name" class="item-product">
+      <div v-for="Accompaniment in Accompaniments" :key="Accompaniment.name" class="item-product" @click="emitProduct(Accompaniment)">
         <div class="product item">
           <div>
             <div class="sub-title">{{Accompaniment.name}}</div>
@@ -30,6 +30,11 @@ export default {
         {name: 'Batata de 100g', value: 5, description: 'Porção de 100g de batatas onduladas super crocantes', serve: 1},
         {name: 'Batata de 300g', value: 15, description: 'Porção de 300g de batatas onduladas super crocantes', serve: 3}
       ]
+    }
+  },
+  methods: {
+    emitProduct (Accompaniment) {
+      this.$emit('openProduct', Accompaniment)
     }
   }
 }
