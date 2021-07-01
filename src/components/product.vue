@@ -6,54 +6,45 @@
     </div>
     <div class="product_item second">
         <div class="second_header">
-            <div class="header_title">{{product.name}}</div>
+            <div class="header_title">{{produce.name}}</div>
             <i class="fas fa-times header_icon computer" @click="exitProduct()"></i>
         </div>
         <div class="second_body">
             <div class="body">
-                <div class="body_description info">{{product.description}}</div>
-                <div class="body_serve info" v-if="product.serve == 1">Serve {{product.serve}} pessoa</div>
-                <div class="body_serve info" v-else>Serve {{product.serve}} pessoas</div>
-                <div class="body_value info">R${{product.value.toFixed(2)}}</div>
-                <div v-if="product.bread !== undefined">
-                  <div class="body_item main">
-                    <div class="body_container">
-                      <div class="container_title">Pão</div>
-                      <div class="container_sub-title">Escolha 1 opção.</div>
+                <div class="body_description info" v-if="produce.description !== ''">{{produce.description}}</div>
+                <div v-if="produce.serve !== 0">
+                  <div class="body_serve info" v-if="produce.serve == 1">Serve {{produce.serve}} pessoa</div>
+                  <div class="body_serve info" v-else>Serve {{produce.serve}} pessoas</div>
+                </div>
+                <div class="body_value info">R${{produce.value.toFixed(2)}}</div>
+                <div v-for="iten in produce.choice"  :key="iten.name">
+                  <div v-if="iten.type == 'additional'">
+                    <div class="body_item main">
+                      <div class="body_container">
+                        <div class="container_title">{{iten.name}}</div>
+                        <div class="container_sub-title">{{iten.description}}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div v-for="bread in product.bread" :key="bread" class="body_item">
-                    <div class="bread">
-                        <label class="container_title">{{bread}}</label>
-                        <input class="bread_input" type="radio" v-model="food.bread" name="bread" :value="bread">
-                    </div>
+                    <div v-for="iten in iten.itens" :key="iten.name" class="body_item ">
+                      <div class="body_container">
+                        <div class="container_title">{{iten.name}}</div>
+                        <div class="container_title" v-if="iten.description !== ''">{{itens.description}}</div>
+                        <div class="container_sub-title">+R${{iten.value.toFixed(2)}}</div>
+                        <input class="container_number additional" @click="addTotal()" v-model.number="iten.amount" type="number" max="2" min="0">
+                      </div>
                   </div>
                 </div>
-                <div v-if="arrayAdditional !== undefined">
-                  <div class="body_item main">
-                      <div class="body_container">
-                          <div class="container_title">Adicionais</div>
-                          <div class="container_sub-title">Escolha até 2 opções.</div>
-                      </div>
-                  </div>
-                  <div v-for="additional in arrayAdditional" :key="additional.name" class="body_item ">
-                      <div class="body_container">
-                          <div class="container_title">{{additional.name}}</div>
-                          <div class="container_sub-title">+R${{additional.value.toFixed(2)}}</div>
-                          <input class="container_number additional" @click="addTotal()" v-model.number="additional.amount" type="number" max="2" min="0">
-                      </div>
-                  </div>
                 </div>
                 <div class="body_comment">
                     <div class="comment_title">Algum comentário?</div>
-                    <textarea class="comment" cols="30" rows="10" maxlength="140" v-model="food.comment" placeholder="Ex: tirar tomate, alface etc."></textarea>
+                    <textarea class="comment" cols="30" rows="10" maxlength="140" v-model="produce.comment" placeholder="Ex: tirar tomate, alface etc."></textarea>
                 </div>
             </div>
             <div class="body_footer">
-                <input class="container_number plus" @click="addTotal()" v-model.number="food.amount" type="number" min="1">
+                <input class="container_number plus" @click="addTotal()" v-model.number="produce.amount" type="number" min="1">
                 <div class="footer_add" @click="addProduct()">
                     <div class="footer_add_text">Adicionar</div>
-                    <div class="footer_add_text">R${{food.total.toFixed(2)}}</div>
+                    <div class="footer_add_text">R${{produce.total}}</div>
                 </div>
             </div>
         </div>
@@ -65,17 +56,7 @@
 export default {
   data () {
     return {
-      food: {
-        name: this.product.name,
-        description: this.product.description,
-        bread: '',
-        additional: [],
-        comment: '',
-        amount: 1,
-        value: this.product.value,
-        total: this.product.value
-      },
-      arrayAdditional: this.product.additional,
+      produce: this.product,
       amount: 0
     }
   },

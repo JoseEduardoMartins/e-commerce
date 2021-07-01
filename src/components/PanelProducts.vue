@@ -1,18 +1,22 @@
 <template>
-  <div class="container">
-    <div class="title">Porções de Batatas</div>
+  <div :id="produce.idCss" :class="produce.classCss">
+    <div class="title">{{produce.name}}</div>
     <div class="container-item">
-      <div v-for="Accompaniment in Accompaniments" :key="Accompaniment.name" class="item-product" @click="emitProduct(Accompaniment)">
-        <div class="product item">
+      <div v-for="product in produce.products" :key="product.name" class="item-product" @click="emitProduct(product)">
+        <div class="product item" v-if="product.description !== '' & product.serve !== 0 ">
           <div>
-            <div class="sub-title">{{Accompaniment.name}}</div>
-            <div class="description">{{Accompaniment.description}}</div> <br>
+            <div class="sub-title">{{product.name}}</div>
+            <div class="description">{{product.description}}</div> <br>
           </div>
           <div>
-            <div class="serve" v-if="Accompaniment.serve == 1">Serve {{Accompaniment.serve}} pessoa</div>
-            <div class="serve" v-else>Serve {{Accompaniment.serve}} pessoas</div><br>
-            <div class="value">R${{Accompaniment.value.toFixed(2)}}</div>
+            <div class="serve" v-if="product.serve == 1 ">Serve {{product.serve}} pessoa</div>
+            <div class="serve" v-else-if="product.serve > 1">Serve {{product.serve}} pessoas</div><br>
+            <div class="value">R${{product.value.toFixed(2)}}</div>
           </div>
+        </div>
+        <div v-else>
+            <div class="sub-title">{{product.name}}</div>
+            <div class="value">A partir de R${{product.value.toFixed(2)}}</div>
         </div>
         <div class="product image">
           <img src="../assets/burger.jpg" alt="" class="image">
@@ -26,8 +30,11 @@
 export default {
   data () {
     return {
-      
+      produce: this.product
     }
+  },
+  props: {
+    product: Object
   },
   methods: {
     emitProduct (data) {
@@ -37,13 +44,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container{
   width: calc(100% - 20px);
   margin: 95px auto 0;
   background-color: #222222;
   border-radius: 10px;
   color: white;
+}
+.container.accompaniments{
+  margin: 20px auto 0;
+}
+.container.drinks{
+  margin: 20px auto 0;
 }
   .title{
     font-size: 25px;
