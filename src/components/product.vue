@@ -17,23 +17,23 @@
                   <div class="body_serve info" v-else>Serve {{produce.serve}} pessoas</div>
                 </div>
                 <div class="body_value info">R${{produce.value.toFixed(2)}}</div>
-                <div v-for="iten in produce.choice"  :key="iten.name">
-                  <div v-if="iten.type == 'additional'">
+                <div v-for="choice in produce.choice"  :key="choice.name">
+                  <div v-if="choice.type == 'additional'">
                     <div class="body_item main">
                       <div class="body_container">
-                        <div class="container_title">{{iten.name}}</div>
-                        <div class="container_sub-title">{{iten.description}}</div>
+                        <div class="container_title">{{choice.name}}</div>
+                        <div class="container_sub-title">{{choice.description}}</div>
                       </div>
                     </div>
-                    <div v-for="iten in iten.itens" :key="iten.name" class="body_item ">
+                    <div v-for="item in choice.itens" :key="item.name" class="body_item ">
                       <div class="body_container">
-                        <div class="container_title">{{iten.name}}</div>
-                        <div class="container_title" v-if="iten.description !== ''">{{itens.description}}</div>
-                        <div class="container_sub-title">+R${{iten.value.toFixed(2)}}</div>
-                        <input class="container_number additional" @click="addTotal()" v-model.number="iten.amount" type="number" max="2" min="0">
+                        <div class="container_title">{{item.name}}</div>
+                        <div class="container_title" v-if="item.description !== ''">{{item.description}}</div>
+                        <div class="container_sub-title">+R${{item.value.toFixed(2)}}</div>
+                        <input class="container_number additional" @click="addTotal()" v-model.number="item.amount" type="number" max="2" min="0">
                       </div>
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div class="body_comment">
                     <div class="comment_title">Algum comentário?</div>
