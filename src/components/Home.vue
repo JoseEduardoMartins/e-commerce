@@ -26,6 +26,8 @@ export default {
               description: '(pão roseta ou brioche, hambúrguer artesanal 150g, queijo mussarela e maionese da casa)',
               serve: 1,
               value: 14,
+              total: 14,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -34,11 +36,13 @@ export default {
                   itens: [
                     {
                       name: 'Pão brioche',
-                      description: ''
+                      description: '',
+                      value: ''
                     },
                     {
                       name: 'Pão rosera',
-                      description: ''
+                      description: '',
+                      value: ''
                     }
                   ]
                 },
@@ -71,6 +75,8 @@ export default {
               description: '(pão roseta ou brioche, hambúrguer artesanal 150g, cheddar cremoso, queijo mussarela, cebola roxa e maionese da casa)',
               serve: 1,
               value: 16,
+              total: 16,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -116,6 +122,8 @@ export default {
               description: '(pão roseta ou brioche, hambúrguer artesanal 150g, queijo mussarela, alface americano, tomate, cebola roxa e maionese da casa)',
               serve: 1,
               value: 17,
+              total: 17,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -163,6 +171,8 @@ export default {
               '(pão roseta ou brioche, hambúrguer artesanal 150g, ovo frito, queijo mussarela, alface americano, tomate e maionese da casa)',
               serve: 1,
               value: 18,
+              total: 18,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -208,11 +218,13 @@ export default {
               description: '(pão roseta ou brioche, hambúrguer artesanal 150g, bacon, cheddar cremoso, queijo mussarela, alface americano, tomate, cebola roxa e maionese da casa)',
               serve: 1,
               value: 21,
+              total: 21,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
-                  type: 'option',
+                  type: ' ',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -253,6 +265,8 @@ export default {
               description: '(pão roseta ou brioche, hambúrguer artesanal 200g, bacon, ovo frito, cheddar cremoso, queijo mussarela, alface americano, tomate, cebola roxa e maionese da casa)',
               serve: 1,
               value: 25,
+              total: 25,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -298,6 +312,8 @@ export default {
               description: '(pão roseta ou brioche, 2 hambúrguer artesanal de 100g cada, cheddar cremoso e maionese da casa)',
               serve: 1,
               value: 20,
+              total: 20,
+              amount: 1,
               choice: [
                 {
                   name: 'Pão',
@@ -349,13 +365,17 @@ export default {
               name: 'Batata de 100g',
               description: 'Porção de 100g de batatas onduladas super crocantes',
               serve: 1,
-              value: 5
+              amount: 1,
+              value: 5,
+              total: 5
             },
             {
               name: 'Batata de 300g',
               description: 'Porção de 300g de batatas onduladas super crocantes',
               serve: 3,
-              value: 15
+              amount: 1,
+              value: 15,
+              total: 15
             }
           ]
         },
@@ -367,6 +387,7 @@ export default {
             {
               name: 'Refrigerante 1,5l',
               value: 10,
+              total: 0,
               serve: 0,
               description: '',
               choice: [
@@ -400,6 +421,7 @@ export default {
             {
               name: 'Refrigerante lata',
               value: 5,
+              total: 0,
               serve: 0,
               description: '',
               choice: [
@@ -439,6 +461,7 @@ export default {
             {
               name: 'Cerveja',
               value: 3,
+              total: 0,
               serve: 0,
               description: '',
               choice: [
@@ -473,6 +496,7 @@ export default {
               name: 'Água',
               value: 3,
               serve: 0,
+              total: 0,
               description: '',
               choice: [
                 {

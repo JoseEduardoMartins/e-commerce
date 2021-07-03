@@ -18,6 +18,21 @@
                 </div>
                 <div class="body_value info">R${{produce.value.toFixed(2)}}</div>
                 <div v-for="choice in produce.choice"  :key="choice.name">
+                  <div v-if="choice.type == 'option'">
+                    <div class="body_item main">
+                      <div class="body_container">
+                        <div class="container_title">{{choice.name}}</div>
+                        <div class="container_sub-title">{{choice.description}}</div>
+                      </div>
+                    </div>
+                    <div v-for="item in choice.itens" :key="item.name" class="body_item ">
+                      <div class="bread">
+                        <label class="container_title">{{item.name}}</label>
+                        <div class="container_title" v-if="item.description !== ''">{{item.description}}</div>
+                        <input class="bread_input" type="radio" v-model="choici" name="option" :value="item.name">
+                      </div>
+                    </div>
+                  </div>
                   <div v-if="choice.type == 'additional'">
                     <div class="body_item main">
                       <div class="body_container">
@@ -30,7 +45,7 @@
                         <div class="container_title">{{item.name}}</div>
                         <div class="container_title" v-if="item.description !== ''">{{item.description}}</div>
                         <div class="container_sub-title">+R${{item.value.toFixed(2)}}</div>
-                        <input class="container_number additional" @click="addTotal()" v-model.number="item.amount" type="number" max="2" min="0">
+                        <input class="container_number additional" @click="addTotal(item.value, item.amount)" v-model.number="item.amount" type="number" max="2" min="0">
                       </div>
                     </div>
                   </div>
@@ -41,10 +56,10 @@
                 </div>
             </div>
             <div class="body_footer">
-                <input class="container_number plus" @click="addTotal()" v-model.number="produce.amount" type="number" min="1">
+                <input class="container_number plus" type="number" min="1" @click="addTotal()" v-if="produce.amount !== undefined" v-model.number="produce.amount">
                 <div class="footer_add" @click="addProduct()">
                     <div class="footer_add_text">Adicionar</div>
-                    <div class="footer_add_text">R${{produce.total}}</div>
+                    <div class="footer_add_text">R${{produce.total.toFixed(2)}}</div>
                 </div>
             </div>
         </div>
@@ -56,8 +71,9 @@
 export default {
   data () {
     return {
-      produce: this.product,
-      amount: 0
+      produce: Object.assign(this.product),
+      amount: 0,
+      choici: ''
     }
   },
   methods: {
@@ -82,13 +98,19 @@ export default {
       }
     },
     addTotal () {
-      this.food.total = this.food.value
-      if (this.arrayAdditional !== undefined) {
-        for (let i = 0; i < this.arrayAdditional.length; i++) {
-          this.food.total += this.arrayAdditional[i].amount * this.arrayAdditional[i].value
+      (this.produce.amount !== undefined) ? this.produce.total = this.produce.value : this.produce.total = 0
+      if (this.produce.choice !== undefined) {
+        for (let i = 0; i < this.produce.choice.length; i++) {
+          if (this.produce.choice[i].type === 'additional') {
+            for (let j = 0; j < this.produce.choice[i].itens.length; j++) {
+              this.produce.total += this.produce.choice[i].itens[j].value * this.produce.choice[i].itens[j].amount
+            }
+          }
         }
       }
-      this.food.total *= this.food.amount
+      if (this.produce.amount !== undefined) {
+        this.produce.total *= this.produce.amount
+      }
     }
   },
   props: {
