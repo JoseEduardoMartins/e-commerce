@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     emitProduct (data) {
-      this.$emit('openProduct', data)
+      const t = {...data}
+      this.$emit('openProduct', t)
     }
   }
 }
