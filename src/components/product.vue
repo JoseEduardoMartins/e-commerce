@@ -84,7 +84,7 @@ export default {
         this.$emit('setProduct', this.produce)
         this.exitProduct()
       } else {
-        alert('Certifique que você selecionou algo..')
+        alert('Certifique que você selecionou algo.')
       }
     },
     addProduct () {
