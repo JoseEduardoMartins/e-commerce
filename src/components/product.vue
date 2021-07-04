@@ -29,7 +29,7 @@
                       <div class="bread">
                         <label class="container_title">{{item.name}}</label>
                         <div class="container_title" v-if="item.description !== ''">{{item.description}}</div>
-                        <input class="bread_input" type="radio" v-model="choici" name="option" :value="item.name">
+                        <input class="bread_input" type="radio" v-model="choice.option" name="option" :value="item.name">
                       </div>
                     </div>
                   </div>
@@ -71,9 +71,8 @@
 export default {
   data () {
     return {
-      produce: Object.assign(this.product),
-      amount: 0,
-      choici: ''
+      produce: this.product,
+      amount: 0
     }
   },
   methods: {
@@ -81,20 +80,25 @@ export default {
       this.$emit('closeProduct', false)
     },
     submitProduct () {
-      this.$emit('setProduct', this.food)
+      if (this.produce.total > 0) {
+        this.$emit('setProduct', this.produce)
+        this.exitProduct()
+      } else {
+        alert('Certifique que você selecionou algo..')
+      }
     },
     addProduct () {
-      this.food.additional = this.arrayAdditional
-      if (this.arrayAdditional !== undefined | this.product.bread !== undefined) {
-        if (this.food.bread !== '') {
-          this.submitProduct()
-          this.exitProduct()
-        } else {
-          alert('Selecione o tipo de pão que você deseja.')
+      if (this.produce.choice !== undefined) {
+        for (let i = 0; i < this.produce.choice.length; i++) {
+          if (this.produce.choice[i].type === 'option') {
+            (this.produce.choice[i].option !== '') ? this.submitProduct() : alert('Selecione todos itens obrigatorios.')
+            break
+          } else if (this.produce.choice[i].type === 'additional') {
+            this.submitProduct()
+          }
         }
       } else {
         this.submitProduct()
-        this.exitProduct()
       }
     },
     addTotal () {

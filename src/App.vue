@@ -30,6 +30,7 @@ export default {
       this.existProduct = true
       this.shoppingCart.amount += 1
       this.shoppingCart.total += data.total
+      console.log(this.shoppingCart)
     }
   },
   components: {

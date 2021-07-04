@@ -1,7 +1,7 @@
 <template>
     <form>
-      <div v-for="product in arrayProducts" :key="product.idcss">
-        <PanelProducts @openProduct="openProduct" :product="product"/>
+      <div v-for="products in arrayProducts" :key="products.idcss">
+        <PanelProducts @openProduct="openProduct" :product="products"/>
       </div>
       <div v-if="visibilityProduct">
         <Product @closeProduct="closeProduct" @setProduct="setProduct" :product="product"/>
@@ -33,6 +33,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -82,6 +83,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -129,6 +131,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -178,6 +181,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -224,7 +228,8 @@ export default {
                 {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
-                  type: ' ',
+                  type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -272,6 +277,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -319,6 +325,7 @@ export default {
                   name: 'Pão',
                   description: 'Escolha 1 opções',
                   type: 'option',
+                  option: '',
                   itens: [
                     {
                       name: 'Pão brioche',
@@ -523,14 +530,15 @@ export default {
           ]
         }
       ],
-      visibilityProduct: false
+      visibilityProduct: false,
+      product: {}
     }
   },
   methods: {
     openProduct (data) {
       document.documentElement.style.overflow = 'hidden'
       this.visibilityProduct = !this.visibilityProduct
-      this.product = data
+      this.product = Object.assign(data)
     },
     closeProduct (data) {
       document.documentElement.style.overflow = 'auto'
