@@ -4,13 +4,13 @@
     <form action="http://localhost:3000/users" method="post">
       <fieldset>
         <legend> Cadastro de Cliente </legend>
-        <input type="text" name="nomeCompleto" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
-        <input type="text" name="nomeEmpresa" required placeholder="Nome da Empresa"> <br>
+        <input type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
+        <input type="text" name="nameCompany" required placeholder="Nome da Empresa"> <br>
         <input type="text" name="cpf" minlength="11" required maxlength="14" placeholder="CPF"  pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"  title="Digite um CPF no formato: xxx.xxx.xxx-xx">
-        <input type="text" name="numeroTelefone" required minlength="11" maxlength="14" placeholder="Telefone"  pattern="[0-9]{2} ?[0-9]{5}-?[0-9]{4}"  title="Digite um numero de telefone no formato: xx xxxxx-xxxx"> <br>
+        <input type="text" name="number" required minlength="11" maxlength="14" placeholder="Telefone"  pattern="[0-9]{2} ?[0-9]{5}-?[0-9]{4}"  title="Digite um numero de telefone no formato: xx xxxxx-xxxx"> <br>
         <input type="email" name="email" required class="email" placeholder="E-mail"> <br>
-        <input type="password" name="senha" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
-        <input type="password" name="confirmarSenha" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
+        <input type="password" name="password" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
+        <input type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <br><br>
         <a class="login_back" href="../index.html"> Voltar para pagina de login </a>
         <button onclick="" type="submit" name="cadastrar"> Cadastrar </button>
