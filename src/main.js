@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import FirstSection from '@/components/FirstSection.vue'
+
+// components
+import Login from '@/components/Login.vue'
+Vue.component(Login)
 
 Vue.config.productionTip = false
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

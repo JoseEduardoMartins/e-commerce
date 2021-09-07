@@ -13,6 +13,9 @@ export default {
 </script>
 
 <style>
+:root{
+    --azul: #0073cf;
+}
 * {
     margin: 0;
     padding: 0;
