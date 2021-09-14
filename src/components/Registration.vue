@@ -1,19 +1,19 @@
 <template>
   <div class="container">
     <img class="container_logo" src="https://audaces.com/wp-content/themes/Audaces-2018/img/logo.svg">
-    <form action="http://localhost:3000/users" method="post">
+    <form>
       <fieldset>
         <legend> Cadastro de Cliente </legend>
-        <input type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
-        <input type="text" name="nameCompany" required placeholder="Nome da Empresa"> <br>
-        <input type="text" name="cpf" minlength="11" required maxlength="14" placeholder="CPF"  pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"  title="Digite um CPF no formato: xxx.xxx.xxx-xx">
-        <input type="text" name="number" required minlength="11" maxlength="14" placeholder="Telefone"  pattern="[0-9]{2} ?[0-9]{5}-?[0-9]{4}"  title="Digite um numero de telefone no formato: xx xxxxx-xxxx"> <br>
-        <input type="email" name="email" required class="email" placeholder="E-mail"> <br>
-        <input type="password" name="password" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
-        <input type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
+        <input v-model="namePeople" type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
+        <input v-model="nameCompany" type="text" name="nameCompany" required placeholder="Nome da Empresa"> <br>
+        <input v-model="CNPJ" type="text" name="cnpj" minlength="11" required maxlength="14" placeholder="CNPJ"  pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"  title="Digite um CPF no formato: xxx.xxx.xxx-xx">
+        <input v-model="number" type="text" name="number" required minlength="11" maxlength="14" placeholder="Telefone"  pattern="[0-9]{2} ?[0-9]{5}-?[0-9]{4}"  title="Digite um numero de telefone no formato: xx xxxxx-xxxx"> <br>
+        <input v-model="email" type="email" name="email" required class="email" placeholder="E-mail"> <br>
+        <input v-model="password" type="password" name="password" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
+        <input v-model="confirmPassword" type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <br><br>
         <a class="login_back" href="../index.html"> Voltar para pagina de login </a>
-        <button onclick="" type="submit" name="cadastrar"> Cadastrar </button>
+        <button @click="register()" type="submit"> Cadastrar </button>
       </fieldset>
     </form>
   </div>
@@ -21,7 +21,26 @@
 
 <script>
 export default {
+  data () {
+    return {
+      namePeople: '',
+      nameCompany: '',
+      CNPJ: '',
+      number: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  },
+  methods: {
+    register () {
+      if (this.password === this.confirmPassword) {
 
+      } else {
+        alert('As senha estão diferentes!!')
+      }
+    }
+  }
 }
 </script>
 
