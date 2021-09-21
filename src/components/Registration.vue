@@ -13,13 +13,14 @@
         <input v-model="confirmPassword" type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <br><br>
         <a class="login_back" href="../index.html"> Voltar para pagina de login </a>
-        <button @click="register()" type="submit"> Cadastrar </button>
+        <button @click="register()"> Cadastrar </button>
       </fieldset>
     </form>
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   data () {
     return {
@@ -34,8 +35,27 @@ export default {
   },
   methods: {
     register () {
+      let settings = {
+        'url': 'http://localhost:3000/topTech',
+        'method': 'POST',
+        'timeout': 0,
+        'headers': {
+          'Content-Type': 'application/json'
+        },
+        'data': JSON.stringify({
+          'namePeople': 'José Eduardo Martins',
+          'nameCompany': 'Top tech',
+          'cnpj': '85236743000118',
+          'number': '48991340640',
+          'email': 'jose.e2000@gmail.com',
+          'password': '12345678'
+        })
+      }
+      $.ajax(settings).done(function (response) {
+        console.log(response)
+      })
       if (this.password === this.confirmPassword) {
-
+        console.log(this.namePeople)
       } else {
         alert('As senha estão diferentes!!')
       }
