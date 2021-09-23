@@ -6,7 +6,7 @@
         <legend> Cadastro de Cliente </legend>
         <input v-model="namePeople" type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
         <input v-model="nameCompany" type="text" name="nameCompany" required placeholder="Nome da Empresa"> <br>
-        <input v-model="CNPJ" type="text" name="cnpj" minlength="11" required maxlength="14" placeholder="CNPJ"  pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"  title="Digite um CPF no formato: xxx.xxx.xxx-xx">
+        <input v-model="cnpj" type="text" name="cnpj" minlength="11" required maxlength="14" placeholder="CNPJ"  pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"  title="Digite um CPF no formato: xxx.xxx.xxx-xx">
         <input v-model="number" type="text" name="number" required minlength="11" maxlength="14" placeholder="Telefone"  pattern="[0-9]{2} ?[0-9]{5}-?[0-9]{4}"  title="Digite um numero de telefone no formato: xx xxxxx-xxxx"> <br>
         <input v-model="email" type="email" name="email" required class="email" placeholder="E-mail"> <br>
         <input v-model="password" type="password" name="password" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import $ from 'jquery'
+let axios = require('axios')
 export default {
   data () {
     return {
       namePeople: '',
       nameCompany: '',
-      CNPJ: '',
+      cnpj: '',
       number: '',
       email: '',
       password: '',
@@ -34,30 +34,47 @@ export default {
     }
   },
   methods: {
-    register () {
-      let settings = {
-        'url': 'http://localhost:3000/topTech',
-        'method': 'POST',
-        'timeout': 0,
-        'headers': {
-          'Content-Type': 'application/json'
-        },
-        'data': JSON.stringify({
-          'namePeople': 'José Eduardo Martins',
-          'nameCompany': 'Top tech',
-          'cnpj': '85236743000118',
-          'number': '48991340640',
-          'email': 'jose.e2000@gmail.com',
-          'password': '12345678'
-        })
-      }
-      $.ajax(settings).done(function (response) {
-        console.log(response)
-      })
+    verifyRegister () {
       if (this.password === this.confirmPassword) {
         console.log(this.namePeople)
       } else {
         alert('As senha estão diferentes!!')
+      }
+    },
+    register () {
+      var data = JSON.stringify({
+        'namePeople': this.namePeople,
+        'nameCompany': this.nameCompany,
+        'cnpj': this.cnpj,
+        'number': this.number,
+        'email': this.email,
+        'password': this.password
+      })
+      var config = {
+        method: 'post',
+        url: 'http://localhost:3000/topTech',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      }
+      axios(config).then(function (response) {
+        console.log(JSON.stringify(response.data))
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    getByEmail () {
+      var config = {
+        method: 'get',
+        url: 'http://localhost:3000/topTech/' + this.email,
+        headers: { }
+      }
+      try {
+        let obj = axios(config)
+        console.log(obj)
+      } catch (error) {
+        console.log(error)
       }
     }
   }
