@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <img class="container_logo" src="https://audaces.com/wp-content/themes/Audaces-2018/img/logo.svg">
-    <form>
+    <form @submit="verifyRegister()">
       <fieldset>
         <legend> Cadastro de Cliente </legend>
         <input v-model="namePeople" type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
@@ -12,8 +12,8 @@
         <input v-model="password" type="password" name="password" required minlength="8" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <input v-model="confirmPassword" type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <br><br>
-        <a class="login_back" href="../index.html"> Voltar para pagina de login </a>
-        <button @click="register()"> Cadastrar </button>
+        <a class="login_back" href="./login.vue"> Voltar para pagina de login </a>
+        <button> Cadastrar </button>
       </fieldset>
     </form>
   </div>
@@ -36,13 +36,13 @@ export default {
   methods: {
     verifyRegister () {
       if (this.password === this.confirmPassword) {
-        console.log(this.namePeople)
+        (this.getByEmail() === 1) ? alert('dados invalidos!') : this.register()
       } else {
         alert('As senha estão diferentes!!')
       }
     },
     register () {
-      var data = JSON.stringify({
+      const data = JSON.stringify({
         'namePeople': this.namePeople,
         'nameCompany': this.nameCompany,
         'cnpj': this.cnpj,
@@ -50,7 +50,7 @@ export default {
         'email': this.email,
         'password': this.password
       })
-      var config = {
+      const config = {
         method: 'post',
         url: 'http://localhost:3000/topTech',
         headers: {
@@ -58,21 +58,23 @@ export default {
         },
         data: data
       }
-      axios(config).then(function (response) {
-        console.log(JSON.stringify(response.data))
-      }).catch(function (error) {
+      try {
+        axios(config)
+        this.router.push({name: 'Login'})
+      } catch (error) {
         console.log(error)
-      })
+      }
     },
-    getByEmail () {
-      var config = {
+    async getByEmail () {
+      const config = {
         method: 'get',
         url: 'http://localhost:3000/topTech/' + this.email,
         headers: { }
       }
       try {
-        let obj = axios(config)
-        console.log(obj)
+        let obj = await axios(config)
+        console.log(obj.data.data.length)
+        return obj.data.data.length
       } catch (error) {
         console.log(error)
       }
