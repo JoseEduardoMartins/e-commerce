@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <img class="container_logo" src="https://audaces.com/wp-content/themes/Audaces-2018/img/logo.svg">
-    <form @submit="verifyRegister()">
+    <form @submit="onSubmit()">
       <fieldset>
         <legend> Cadastro de Cliente </legend>
         <input v-model="namePeople" type="text" name="namePeople" required pattern="[a-zA-z]*" title="É possivel apenas utilização de letras!" placeholder="Nome Completo">
@@ -13,7 +13,7 @@
         <input v-model="confirmPassword" type="password" name="confirmPassword" required minlength="8" placeholder="Confirmar Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula">
         <br><br>
         <a class="login_back" href="./login.vue"> Voltar para pagina de login </a>
-        <button> Cadastrar </button>
+        <button type="submit"> Cadastrar </button>
       </fieldset>
     </form>
   </div>
@@ -34,9 +34,13 @@ export default {
     }
   },
   methods: {
-    verifyRegister () {
+    onSubmit () {
       if (this.password === this.confirmPassword) {
-        (this.getByEmail() === 1) ? alert('dados invalidos!') : this.register()
+        if (this.getByEmail() === 1) {
+          alert('dados invalidos!')
+        } else {
+          (this.register()) ? this.$router.push({name: 'Login'}) : alert('algo de errado aconteceu, repita o processo!')
+        }
       } else {
         alert('As senha estão diferentes!!')
       }
@@ -60,9 +64,10 @@ export default {
       }
       try {
         axios(config)
-        this.router.push({name: 'Login'})
+        return true
       } catch (error) {
         console.log(error)
+        return false
       }
     },
     async getByEmail () {

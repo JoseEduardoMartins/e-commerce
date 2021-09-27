@@ -4,8 +4,8 @@
         <form class="contaider_form" method="post">
             <fieldset>
                 <legend> Fazer login</legend>
-                <input type="email" name="login" required placeholder="E-mail"> <br>
-                <input type="password" name="senha" required placeholder="Senha" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula"> <br>
+                <input v-model="email" type="email" name="login" required placeholder="E-mail"> <br>
+                <input v-model="password" type="password" name="senha" required placeholder="Senha" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A senha deve conter 8 ou mais caracteres com pelo menos um número e uma letra maiúscula e minúscula"> <br>
                 <a class="forgot_password" href="#"> Esqueceu sua senha? </a>
             </fieldset>
             <router-link class="register" :to="{ name: 'Registration'}">Cadastro</router-link>
@@ -16,7 +16,12 @@
 
 <script>
 export default {
-
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  }
 }
 </script>
 
